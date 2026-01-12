@@ -11,8 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://d0bbjhesy6lg4" path="res://Sprites/Effects/enemy-death.png" id="9_6y3jp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_okm6x"]
-radius = 16.0
-height = 33.830845
+height = 32.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ppp0m"]
 resource_local_to_scene = true
@@ -284,6 +283,7 @@ MAX_HEALTH = 15.0
 hp_bar = NodePath("HPBar")
 
 [node name="HPBar" parent="HealthComponent" instance=ExtResource("3_c25kj")]
+visible = false
 offset_top = -8.0
 offset_bottom = -8.0
 metadata/_edit_use_anchors_ = true
@@ -308,10 +308,9 @@ debug_color = Color(0.25649512, 0.6281854, 0.2717998, 0.41960785)
 [node name="AttackComponent" parent="." instance=ExtResource("7_mpace")]
 collision_layer = 0
 collision_mask = 2
-ATTACK_DAMAGE = 15.0
+ATTACK_DAMAGE = 10.0
 
 [node name="AttackCollision" type="CollisionShape2D" parent="AttackComponent"]
-position = Vector2(0.5, 0.5)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_oxqts")
 debug_color = Color(0.9382652, 0.11452209, 0.55225664, 0.41960785)
@@ -329,17 +328,15 @@ collision_mask = 2
 [node name="PlayerFinderCollision" type="CollisionShape2D" parent="PlayerFinderArea"]
 visible = false
 shape = SubResource("CircleShape2D_c25kj")
-
-[node name="PlayerLoseArea" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
-
-[node name="PlayerLoseCollision" type="CollisionShape2D" parent="PlayerLoseArea"]
-visible = false
-shape = SubResource("CircleShape2D_c25kj")
+debug_color = Color(0.64430785, 0.5217754, 0.09627619, 0.41960785)
 
 [node name="DebugDirection" type="RayCast2D" parent="."]
+visible = false
+
+[node name="DirectionSearchTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
 
 [connection signal="hp_changed" from="HealthComponent" to="." method="_on_health_component_hp_changed"]
 [connection signal="area_entered" from="PlayerFinderArea" to="." method="_on_player_finder_area_entered"]
-[connection signal="area_exited" from="PlayerLoseArea" to="." method="_on_player_finder_area_exited"]
+[connection signal="area_exited" from="PlayerFinderArea" to="." method="_on_player_finder_area_exited"]

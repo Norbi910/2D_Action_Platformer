@@ -28,13 +28,16 @@ func toggle_flashing():
 		return
 	if not is_flashing:
 		animation_player.stop()
+		flash_color = Color.WHITE
 		flash_enabled = false
 		return
 	flash_enabled = true
+	flash_color = Color.RED
 	animation_player.play("quick_flash")
 
 func _on_flash_timer_timeout() -> void:
 	flash_enabled = false
 	if is_flashing and not animation_player.is_playing():
 		flash_enabled = true
+		flash_color = Color.LIGHT_YELLOW
 		animation_player.play("quick_flash")

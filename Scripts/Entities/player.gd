@@ -2,21 +2,22 @@ class_name Player
 extends CharacterBody2D
 
 # Movement variables
-@export var speed: float= 150.0
+@export var speed: float= 180.0
 @export var acceleration: float = 20.0
 @export var deacceleration: float = 10.0
 var direction: float
 
 @export var jump_height: float = 128.0
-@export var jump_time_to_peak: float = 0.5
-@export var jump_fall_time: float = 0.4
+@export var jump_time_to_peak: float = 0.6
+@export var jump_fall_time: float = 0.43
 
-var jump_velocity: float = - 2.0 * jump_height / jump_time_to_peak
-var jump_gravity: float = 2.0 * jump_height / jump_time_to_peak / jump_time_to_peak
-var fall_gravity: float = 2.0 * jump_height / jump_fall_time / jump_fall_time
+@onready var jump_velocity: float = - 2.0 * jump_height / jump_time_to_peak
+@onready var jump_gravity: float = 2.0 * jump_height / jump_time_to_peak / jump_time_to_peak
+@onready var fall_gravity: float = 2.0 * jump_height / jump_fall_time / jump_fall_time
 
 @export var variable_jump_height_strength: float = 0.4
 @export var float_strength: float = 10.0
+@export var terminal_velocity: float = 600
 
 # Imports
 @onready var sprite: Sprite2D = %PlayerSprite
@@ -37,9 +38,15 @@ var current_state: State = State.IDLE
 var is_attacking: bool = false
 var is_floating: bool = false
 
+var is_alive: bool = true
+
 
 
 func _physics_process(delta: float) -> void:
+	if not is_alive: return
+	jump_velocity = - 2.0 * jump_height / jump_time_to_peak
+	jump_gravity= 2.0 * jump_height / jump_time_to_peak / jump_time_to_peak
+	fall_gravity= 2.0 * jump_height / jump_fall_time / jump_fall_time
 	_handle_input()
 	_update_movement(delta)
 	_update_state()
@@ -87,7 +94,7 @@ func _update_movement(delta: float):
 		current_state = State.JUMP
 		jump_buffer_timer.stop()
 		coyote_timer.stop()
-		velocity.y += jump_velocity
+		velocity.y = jump_velocity
 	
 	if current_state == State.JUMP:
 		velocity.y += delta * jump_gravity
@@ -95,6 +102,7 @@ func _update_movement(delta: float):
 		velocity.y += delta * fall_gravity / float_strength
 	else: 
 		velocity.y += delta * fall_gravity
+	velocity.y = minf(velocity.y, terminal_velocity)
 
 
 func _update_state():
@@ -153,8 +161,9 @@ func _update_animation() -> void:
 
 
 func _die():
+	is_alive = false
 	PLAYER_INVENTORY.reset()
-	sprite.visible = false
+	animation_player.play("death")
 	print("YOU DIED")
 	Engine.time_scale = 0.5
 	%RespawnTimer.start()
@@ -180,6 +189,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 
 func _on_respawn_timer_timeout() -> void:
 	Engine.time_scale = 1
+	is_alive = true
 	sprite.visible = true
 	get_tree().reload_current_scene()
 

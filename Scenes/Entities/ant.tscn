@@ -232,6 +232,11 @@ _data = {
 
 [node name="Ant" type="CharacterBody2D"]
 collision_layer = 0
+wall_min_slide_angle = 1.0506883
+floor_stop_on_slope = false
+floor_constant_speed = true
+floor_max_angle = 1.2322024
+floor_snap_length = 2.0
 script = ExtResource("1_4ydk5")
 speed = 50.0
 
@@ -250,6 +255,7 @@ MAX_HEALTH = 30.0
 hp_bar = NodePath("HPBar")
 
 [node name="HPBar" parent="HealthComponent" instance=ExtResource("3_2itxg")]
+visible = false
 
 [node name="pivot" type="Node2D" parent="."]
 
@@ -262,13 +268,13 @@ hframes = 8
 
 [node name="RayCastDown" type="RayCast2D" parent="pivot"]
 unique_name_in_owner = true
-position = Vector2(3, 0)
-target_position = Vector2(0, 20)
+position = Vector2(4, 0)
+target_position = Vector2(0, 21)
 
 [node name="RayCastAhead" type="RayCast2D" parent="pivot"]
 unique_name_in_owner = true
-position = Vector2(0, 5)
-target_position = Vector2(21, 0)
+position = Vector2(0, 3)
+target_position = Vector2(17, 0)
 
 [node name="HitBoxComponent" parent="pivot" node_paths=PackedStringArray("health_component") instance=ExtResource("4_yntpf")]
 collision_layer = 8
@@ -277,6 +283,7 @@ health_component = NodePath("../../HealthComponent")
 invincibility_time = 0.2
 
 [node name="HitBox" type="CollisionShape2D" parent="pivot/HitBoxComponent"]
+visible = false
 position = Vector2(0.5, 0.5)
 shape = SubResource("CircleShape2D_p3gn3")
 debug_color = Color(0.25649512, 0.6281854, 0.2717998, 0.41960785)
@@ -286,6 +293,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="AttackCollision" type="CollisionShape2D" parent="pivot/AttackComponent"]
+visible = false
 position = Vector2(0.5, 0.5)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_f7xtn")

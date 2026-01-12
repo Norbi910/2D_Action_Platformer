@@ -54,10 +54,12 @@ frame_progress = 0.37945244
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_2xkex")
 
 [node name="TextBox" type="Label" parent="."]
+z_index = 5
 offset_left = -79.0
 offset_top = -38.0
 offset_right = 79.0

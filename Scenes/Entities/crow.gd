@@ -3,9 +3,11 @@ extends Enemy
 var target: Area2D
 var direction: Vector2
 var is_alive: bool = true
-@export var speed: float = 200.0
+@export var speed: float = 250.0
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var collision: CollisionShape2D = $Collision
+@onready var direction_search_timer: Timer = $DirectionSearchTimer
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -15,8 +17,9 @@ func _physics_process(delta: float) -> void:
 	if not target: 
 		velocity += get_gravity() * delta
 	else:
-		if Engine.get_process_frames() % 30 == 0:
+		if direction_search_timer.time_left <= 0:
 			direction = (target.global_position - global_position).normalized()
+			direction_search_timer.start()
 		velocity = velocity.move_toward(direction * speed, 10) 
 		$DebugDirection.target_position = direction * speed
 	move_and_slide()
@@ -25,11 +28,13 @@ func _physics_process(delta: float) -> void:
 func _on_player_finder_area_entered(area: Node2D) -> void:
 	target = area
 	direction = (target.global_position - global_position).normalized()
+	collision.shape.radius = 16
 
 
 func _on_player_finder_area_exited(area: Node2D) -> void:
 	if area == target:
 		target = null
+		collision.shape.radius = 10
 		
 func animation_handler():
 	sprite_2d.flip_h = velocity.x >= 0

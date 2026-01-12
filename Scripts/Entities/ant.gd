@@ -6,8 +6,10 @@ extends Enemy
 @export var max_hp: float
 @export var damage: float
 
+
+
 var direction: int = 1
-var is_alive: bool = true
+@export var is_alive: bool = true
 @onready var ray_cast_ahead: RayCast2D = $%RayCastAhead
 @onready var ray_cast_down: RayCast2D = $%RayCastDown
 @onready var sprite: Sprite2D = $pivot/Sprite2D
@@ -30,7 +32,7 @@ func _physics_process(_delta: float) -> void:
 		turn_around()
 		
 	velocity.x = direction * speed 
-	
+	velocity += get_gravity() * _delta
 	var ground_following_rotation: float= get_real_velocity().angle_to(Vector2(direction, 0)) * -direction
 	sprite.rotation = move_toward(sprite.rotation, ground_following_rotation, 0.1)
 	move_and_slide()

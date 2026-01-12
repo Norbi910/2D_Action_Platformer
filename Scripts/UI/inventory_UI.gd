@@ -1,6 +1,6 @@
 extends Control
 
-@onready var inventory: Inventory = preload("res://Resources/Inventory/player_inventory.tres")
+@onready var inventory: PlayerData = preload("res://Resources/Inventory/player_inventory.tres")
 @onready var slots: Array = $ColorRect/GridContainer.get_children()
 
 func _ready() -> void:
@@ -14,6 +14,8 @@ func _process(_delta: float) -> void:
 		update_slots()
 
 func update_slots():
-	for i in range(min(slots.size(), inventory.items.size())):
+	for i in range(inventory.items.size()):
 		slots[i].update(inventory.items[i])
+	for i in range(inventory.items.size(), slots.size() - inventory.items.size()):
+		slots[i].update(null)
 	
