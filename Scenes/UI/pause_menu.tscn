@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://6oay2ktv6ylx"]
 
-[ext_resource type="Script" uid="uid://bailxyw40o2o7" path="res://pause_menu.gd" id="1_8rf44"]
+[ext_resource type="Script" uid="uid://bailxyw40o2o7" path="res://Scripts/UI/pause_menu.gd" id="1_8rf44"]
 [ext_resource type="FontFile" uid="uid://c6lvcqnjf517l" path="res://Sprites/Fonts/MedodicaRegular.otf" id="2_r2i2h"]
 
 [node name="PauseMenu" type="Control"]

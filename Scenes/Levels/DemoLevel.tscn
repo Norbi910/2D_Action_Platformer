@@ -731,7 +731,7 @@ pattern_2 = SubResource("TileMapPattern_ydaot")
 pattern_3 = SubResource("TileMapPattern_qjc0w")
 pattern_4 = SubResource("TileMapPattern_y2mi2")
 
-[node name="DemoLevel" type="Node2D"]
+[node name="OnlabDemoLevel" type="Node2D"]
 script = ExtResource("1_daumt")
 
 [node name="BackGround" type="Node2D" parent="."]
@@ -971,6 +971,8 @@ drop_source = NodePath("../Enemies/BigAnt")
 position = Vector2(26, -153)
 
 [node name="Camera" parent="Player" instance=ExtResource("7_qjc0w")]
+position = Vector2(1, 2)
+limit_smoothed = true
 max_offset = 100
 
 [connection signal="hints_toggled" from="HUD" to="." method="_on_hud_hints_toggled"]
