@@ -1,6 +1,6 @@
-[gd_scene load_steps=20 format=3 uid="uid://bs1jsgcfbqxsd"]
+[gd_scene format=3 uid="uid://bs1jsgcfbqxsd"]
 
-[ext_resource type="Script" uid="uid://dc262svgjrkrm" path="res://Scenes/Entities/crow.gd" id="1_c25kj"]
+[ext_resource type="Script" uid="uid://dc262svgjrkrm" path="res://Scripts/Entities/crow.gd" id="1_c25kj"]
 [ext_resource type="PackedScene" uid="uid://cf4duabfcn6fa" path="res://Scenes/Components/hit_flash_component.tscn" id="1_lou7a"]
 [ext_resource type="PackedScene" uid="uid://bml8o3fl7yfw0" path="res://Scenes/Components/health_component.tscn" id="2_chaky"]
 [ext_resource type="PackedScene" uid="uid://cdnmaw550r223" path="res://Scenes/UI/hp_bar.tscn" id="3_c25kj"]
@@ -263,77 +263,75 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_c25kj"]
 radius = 300.0
 
-[node name="Crow" type="CharacterBody2D"]
+[node name="Crow" type="CharacterBody2D" unique_id=978249869]
 collision_layer = 8
 collision_mask = 9
 script = ExtResource("1_c25kj")
 
-[node name="Collision" type="CollisionShape2D" parent="."]
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=725901849]
 rotation = 1.5707964
 scale = Vector2(1, 1.005)
 shape = SubResource("CapsuleShape2D_okm6x")
 
-[node name="HitFlashComponent" parent="." node_paths=PackedStringArray("sprite", "healthComponent") instance=ExtResource("1_lou7a")]
+[node name="HitFlashComponent" parent="." unique_id=552003246 node_paths=PackedStringArray("sprite", "healthComponent") instance=ExtResource("1_lou7a")]
 sprite = NodePath("../Sprite2D")
 healthComponent = NodePath("../HealthComponent")
 
-[node name="HealthComponent" parent="." node_paths=PackedStringArray("hp_bar") instance=ExtResource("2_chaky")]
+[node name="HealthComponent" parent="." unique_id=1554441793 node_paths=PackedStringArray("hp_bar") instance=ExtResource("2_chaky")]
 position = Vector2(0, -16)
 MAX_HEALTH = 15.0
 hp_bar = NodePath("HPBar")
 
-[node name="HPBar" parent="HealthComponent" instance=ExtResource("3_c25kj")]
+[node name="HPBar" parent="HealthComponent" unique_id=497513154 instance=ExtResource("3_c25kj")]
 visible = false
 offset_top = -8.0
 offset_bottom = -8.0
 metadata/_edit_use_anchors_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1274542721]
 material = SubResource("ShaderMaterial_ppp0m")
 texture = ExtResource("5_nuoyh")
 hframes = 3
 vframes = 3
 
-[node name="HitBoxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("6_4s38x")]
+[node name="HitBoxComponent" parent="." unique_id=525335282 node_paths=PackedStringArray("health_component") instance=ExtResource("6_4s38x")]
 collision_layer = 8
 collision_mask = 0
 health_component = NodePath("../HealthComponent")
 invincibility_time = 0.2
 
-[node name="HitBox" type="CollisionShape2D" parent="HitBoxComponent"]
+[node name="HitBox" type="CollisionShape2D" parent="HitBoxComponent" unique_id=1184203549]
 position = Vector2(0.5, 0.5)
 shape = SubResource("CircleShape2D_22he3")
 debug_color = Color(0.25649512, 0.6281854, 0.2717998, 0.41960785)
 
-[node name="AttackComponent" parent="." instance=ExtResource("7_mpace")]
+[node name="AttackComponent" parent="." unique_id=699261722 instance=ExtResource("7_mpace")]
 collision_layer = 0
 collision_mask = 2
 ATTACK_DAMAGE = 10.0
 
-[node name="AttackCollision" type="CollisionShape2D" parent="AttackComponent"]
+[node name="AttackCollision" type="CollisionShape2D" parent="AttackComponent" unique_id=1448938087]
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_oxqts")
 debug_color = Color(0.9382652, 0.11452209, 0.55225664, 0.41960785)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_sfe2d")
-}
-autoplay = "idle"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1728695096]
+libraries/ = SubResource("AnimationLibrary_sfe2d")
+autoplay = &"idle"
 
-[node name="PlayerFinderArea" type="Area2D" parent="."]
+[node name="PlayerFinderArea" type="Area2D" parent="." unique_id=1020472306]
 collision_layer = 0
 collision_mask = 2
 
-[node name="PlayerFinderCollision" type="CollisionShape2D" parent="PlayerFinderArea"]
+[node name="PlayerFinderCollision" type="CollisionShape2D" parent="PlayerFinderArea" unique_id=1525507058]
 visible = false
 shape = SubResource("CircleShape2D_c25kj")
 debug_color = Color(0.64430785, 0.5217754, 0.09627619, 0.41960785)
 
-[node name="DebugDirection" type="RayCast2D" parent="."]
+[node name="DebugDirection" type="RayCast2D" parent="." unique_id=873358009]
 visible = false
 
-[node name="DirectionSearchTimer" type="Timer" parent="."]
+[node name="DirectionSearchTimer" type="Timer" parent="." unique_id=1353098294]
 wait_time = 0.4
 one_shot = true
 

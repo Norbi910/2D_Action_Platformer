@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Attack" format=3 uid="uid://dcmmki52158lx"]
+
+[ext_resource type="Script" uid="uid://djlgois0kuta2" path="res://Scripts/Boss/attack.gd" id="1_8pkqg"]
+
+[resource]
+script = ExtResource("1_8pkqg")
+required_state = 1
+metadata/_custom_type_script = "uid://djlgois0kuta2"

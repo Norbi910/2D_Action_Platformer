@@ -14,14 +14,15 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="Önlab"
+config/name="2D Platformer - Szakdoga"
 run/main_scene="uid://0y7b0t310ya6"
 config/features=PackedStringArray("4.6", "Forward Plus")
 run/max_fps=120
 
 [autoload]
 
-Bgm="*res://Scenes/bgm.tscn"
+Bgm="*res://Scenes/UI/bgm.tscn"
+Hud="*uid://x63lcjbcaif2"
 
 [display]
 
@@ -32,6 +33,19 @@ window/size/window_width_override=960
 window/size/window_height_override=540
 window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
+
+[editor_plugins]
+
+enabled=PackedStringArray()
+
+[file_customization]
+
+folder_colors={
+"res://Resources/": "red",
+"res://Scenes/": "blue",
+"res://Scripts/": "purple",
+"res://Sprites/": "yellow"
+}
 
 [input]
 
@@ -122,3 +136,4 @@ pause={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+viewport/hdr_2d=true

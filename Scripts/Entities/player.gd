@@ -40,7 +40,8 @@ var is_floating: bool = false
 
 var is_alive: bool = true
 
-
+func _enter_tree() -> void:
+	Hud.register_player(self)
 
 func _physics_process(delta: float) -> void:
 	if not is_alive: return
@@ -73,7 +74,7 @@ func _handle_input():
 	# Get the input direction and handle the movement/deceleration.
 	direction = Input.get_axis("move_left", "move_right")
 	
-			
+	
 		
 		
 func _update_movement(delta: float):
