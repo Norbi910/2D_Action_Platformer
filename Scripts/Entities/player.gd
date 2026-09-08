@@ -2,11 +2,14 @@ class_name Player
 extends CharacterBody2D
 
 # Movement variables
+@export_category("Movement")
+@export_group("ground")
 @export var speed: float= 180.0
 @export var acceleration: float = 20.0
 @export var deacceleration: float = 10.0
 var direction: float
 
+@export_group("jump")
 @export var jump_height: float = 128.0
 @export var jump_time_to_peak: float = 0.6
 @export var jump_fall_time: float = 0.43
@@ -14,10 +17,9 @@ var direction: float
 @onready var jump_velocity: float = - 2.0 * jump_height / jump_time_to_peak
 @onready var jump_gravity: float = 2.0 * jump_height / jump_time_to_peak / jump_time_to_peak
 @onready var fall_gravity: float = 2.0 * jump_height / jump_fall_time / jump_fall_time
-
 @export var variable_jump_height_strength: float = 0.4
-@export var float_strength: float = 10.0
 @export var terminal_velocity: float = 600
+@export var float_strength: float = 10.0
 
 # Imports
 @onready var sprite: Sprite2D = %PlayerSprite
@@ -31,6 +33,13 @@ const PLAYER_INVENTORY = preload("res://Resources/Inventory/player_inventory.tre
 
 signal health_changed(hp)
 
+# Player Abilities
+@export_category("Abilities")
+@export var CanAttack: bool = true
+@export var CanFloat: bool = true
+@export var CanDash: bool = false
+@export var CanDoubleJump: bool = false
+@export var CanProjectile: bool = false
 
 # State Machine Related variables
 enum State{IDLE, RUN, JUMP, FALL, FLOAT}
@@ -42,21 +51,20 @@ var is_alive: bool = true
 
 func _enter_tree() -> void:
 	Hud.register_player(self)
-
-func _physics_process(delta: float) -> void:
-	if not is_alive: return
 	jump_velocity = - 2.0 * jump_height / jump_time_to_peak
 	jump_gravity= 2.0 * jump_height / jump_time_to_peak / jump_time_to_peak
 	fall_gravity= 2.0 * jump_height / jump_fall_time / jump_fall_time
+
+func _physics_process(delta: float) -> void:
+	if not is_alive: return
 	_handle_input()
 	_update_movement(delta)
 	_update_state()
 	_update_animation()
 	move_and_slide()
-	#print(velocity.y)
 	
 func _handle_input():
-	if Input.is_action_just_pressed("attack") and attack_cooldown_timer.is_stopped():
+	if CanAttack and Input.is_action_just_pressed("attack") and attack_cooldown_timer.is_stopped():
 		is_attacking = true
 		attack_cooldown_timer.start()
 
@@ -66,7 +74,7 @@ func _handle_input():
 	if current_state == State.JUMP and Input.is_action_just_released("jump") and not is_on_floor():
 		velocity.y *= variable_jump_height_strength
 
-	is_floating = not is_on_floor() and Input.is_action_pressed("jump")
+	is_floating = CanFloat and !is_on_floor() and Input.is_action_pressed("jump")
 	
 	if Input.is_action_just_pressed("interact"): 
 		_interact()
