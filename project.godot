@@ -22,7 +22,6 @@ run/max_fps=120
 [autoload]
 
 Bgm="*res://Scenes/UI/bgm.tscn"
-Hud="*uid://x63lcjbcaif2"
 
 [display]
 

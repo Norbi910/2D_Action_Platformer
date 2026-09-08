@@ -49,8 +49,7 @@ var is_floating: bool = false
 
 var is_alive: bool = true
 
-func _enter_tree() -> void:
-	Hud.register_player(self)
+func _ready() -> void:
 	jump_velocity = - 2.0 * jump_height / jump_time_to_peak
 	jump_gravity= 2.0 * jump_height / jump_time_to_peak / jump_time_to_peak
 	fall_gravity= 2.0 * jump_height / jump_fall_time / jump_fall_time
