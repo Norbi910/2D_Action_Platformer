@@ -1,5 +1,5 @@
 class_name Boss
-extends CharacterBody2D
+extends Enemy
 
 @export var activator_area: Area2D
 @export var stats: BossResource
