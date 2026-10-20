@@ -10,7 +10,6 @@ extends Area2D
 signal on_knockback(force: Vector2)
 
 
-
 func damage(dmg: float, direction: Vector2) -> bool:
 	if not health_component:
 		return false
@@ -19,10 +18,13 @@ func damage(dmg: float, direction: Vector2) -> bool:
 	health_component.damage(dmg)
 	var force := maxf(400, dmg * 10)
 	on_knockback.emit(direction * force)
-	invincibilty_timer.start(invincibility_time)
+	invincible(invincibility_time)
+	return true
+
+func invincible(time: float):
+	invincibilty_timer.start(time)
 	if hit_flash:
 		hit_flash.toggle_flashing()
-	return true
 	
 	
 func _on_invincibilty_timer_timeout() -> void:

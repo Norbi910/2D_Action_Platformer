@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="UpgradeResource" format=3 uid="uid://cldl5e57d7uho"]
+
+[ext_resource type="Script" uid="uid://dbywqrgik5j7i" path="res://Scripts/UI/UpgradeResource.gd" id="1_hwntf"]
+
+[resource]
+script = ExtResource("1_hwntf")
+upgradeName = "Dash"
+description = "Unlock Dashing"
+abilty = 3
+rarity = 5
+metadata/_custom_type_script = "uid://dbywqrgik5j7i"

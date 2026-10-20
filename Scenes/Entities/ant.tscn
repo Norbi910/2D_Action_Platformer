@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b5ns3u04dt05o"]
+[gd_scene format=3 uid="uid://b5ns3u04dt05o"]
 
 [ext_resource type="Texture2D" uid="uid://so3xpl0df0sc" path="res://Sprites/Characters/Enemies/ant-sheet.png" id="1_3vc7g"]
 [ext_resource type="Script" uid="uid://da6mss2xnk4bn" path="res://Scripts/Entities/ant.gd" id="1_4ydk5"]
@@ -230,7 +230,7 @@ _data = {
 &"default": SubResource("Animation_h3mn3")
 }
 
-[node name="Ant" type="CharacterBody2D"]
+[node name="Ant" type="CharacterBody2D" unique_id=92849826]
 collision_layer = 0
 wall_min_slide_angle = 1.0506883
 floor_stop_on_slope = false
@@ -238,71 +238,70 @@ floor_constant_speed = true
 floor_max_angle = 1.2322024
 floor_snap_length = 2.0
 script = ExtResource("1_4ydk5")
-speed = 50.0
+healthScalingFactor = 2.0
+damageScalingFactor = 1.5
 
-[node name="AntCollision" type="CollisionShape2D" parent="."]
+[node name="AntCollision" type="CollisionShape2D" parent="." unique_id=1896642072]
 rotation = 1.5707964
 scale = Vector2(1, 1.005)
 shape = SubResource("CapsuleShape2D_ae3vd")
 
-[node name="HitFlashComponent" parent="." node_paths=PackedStringArray("sprite", "healthComponent") instance=ExtResource("2_ox3j0")]
+[node name="HitFlashComponent" parent="." unique_id=197910658 node_paths=PackedStringArray("sprite", "healthComponent") instance=ExtResource("2_ox3j0")]
 sprite = NodePath("../pivot/Sprite2D")
 healthComponent = NodePath("../HealthComponent")
 
-[node name="HealthComponent" parent="." node_paths=PackedStringArray("hp_bar") instance=ExtResource("3_wtaqj")]
+[node name="HealthComponent" parent="." unique_id=863386638 node_paths=PackedStringArray("hp_bar") instance=ExtResource("3_wtaqj")]
 position = Vector2(0, -16)
 MAX_HEALTH = 30.0
 hp_bar = NodePath("HPBar")
 
-[node name="HPBar" parent="HealthComponent" instance=ExtResource("3_2itxg")]
+[node name="HPBar" parent="HealthComponent" unique_id=437193330 instance=ExtResource("3_2itxg")]
 visible = false
 
-[node name="pivot" type="Node2D" parent="."]
+[node name="pivot" type="Node2D" parent="." unique_id=162108518]
 
-[node name="Sprite2D" type="Sprite2D" parent="pivot"]
+[node name="Sprite2D" type="Sprite2D" parent="pivot" unique_id=1526938343]
 material = SubResource("ShaderMaterial_ox3j0")
 texture = ExtResource("1_3vc7g")
 offset = Vector2(3, -5)
 flip_h = true
 hframes = 8
 
-[node name="RayCastDown" type="RayCast2D" parent="pivot"]
+[node name="RayCastDown" type="RayCast2D" parent="pivot" unique_id=780524327]
 unique_name_in_owner = true
 position = Vector2(4, 0)
 target_position = Vector2(0, 21)
 
-[node name="RayCastAhead" type="RayCast2D" parent="pivot"]
+[node name="RayCastAhead" type="RayCast2D" parent="pivot" unique_id=72587629]
 unique_name_in_owner = true
 position = Vector2(0, 3)
 target_position = Vector2(17, 0)
 
-[node name="HitBoxComponent" parent="pivot" node_paths=PackedStringArray("health_component") instance=ExtResource("4_yntpf")]
+[node name="HitBoxComponent" parent="pivot" unique_id=1408707421 node_paths=PackedStringArray("health_component") instance=ExtResource("4_yntpf")]
 collision_layer = 8
 collision_mask = 0
 health_component = NodePath("../../HealthComponent")
 invincibility_time = 0.2
 
-[node name="HitBox" type="CollisionShape2D" parent="pivot/HitBoxComponent"]
+[node name="HitBox" type="CollisionShape2D" parent="pivot/HitBoxComponent" unique_id=1861099908]
 visible = false
 position = Vector2(0.5, 0.5)
 shape = SubResource("CircleShape2D_p3gn3")
 debug_color = Color(0.25649512, 0.6281854, 0.2717998, 0.41960785)
 
-[node name="AttackComponent" parent="pivot" instance=ExtResource("5_yntpf")]
+[node name="AttackComponent" parent="pivot" unique_id=1956119580 instance=ExtResource("5_yntpf")]
 collision_layer = 0
 collision_mask = 2
 
-[node name="AttackCollision" type="CollisionShape2D" parent="pivot/AttackComponent"]
+[node name="AttackCollision" type="CollisionShape2D" parent="pivot/AttackComponent" unique_id=1487009556]
 visible = false
 position = Vector2(0.5, 0.5)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_f7xtn")
 debug_color = Color(0.9382652, 0.11452209, 0.55225664, 0.41960785)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_sela2")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1192242638]
+libraries/ = SubResource("AnimationLibrary_sela2")
+autoplay = &"default"
 
 [connection signal="hp_changed" from="HealthComponent" to="." method="_on_health_changed"]

@@ -1,15 +1,5 @@
 extends Enemy
 
-
-@export var speed: float = 20
-
-@export var max_hp: float
-@export var damage: float
-
-
-
-var direction: int = 1
-@export var is_alive: bool = true
 @onready var ray_cast_ahead: RayCast2D = $%RayCastAhead
 @onready var ray_cast_down: RayCast2D = $%RayCastDown
 @onready var sprite: Sprite2D = $pivot/Sprite2D
@@ -18,11 +8,14 @@ var direction: int = 1
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var attack_component: AttackComponent = $pivot/AttackComponent
 
+var is_alive: bool = true
+var direction: int = 1
+
 func _ready() -> void:
-	if max_hp:
-		health_component.MAX_HEALTH = max_hp
-	if damage:
-		attack_component.ATTACK_DAMAGE = damage
+	super._ready()
+	health_component.MAX_HEALTH = maxHealth
+	attack_component.ATTACK_DAMAGE = damage
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:

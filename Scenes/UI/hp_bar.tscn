@@ -1,38 +1,34 @@
-[gd_scene load_steps=2 format=3 uid="uid://cdnmaw550r223"]
+[gd_scene format=3 uid="uid://cdnmaw550r223"]
 
 [ext_resource type="Script" uid="uid://2l83trm74toe" path="res://Scripts/UI/hp_bar.gd" id="1_7yw3h"]
 
-[node name="HPBar" type="Control"]
-layout_mode = 3
-anchors_preset = 0
+[sub_resource type="Theme" id="Theme_340gp"]
+
+[node name="HPBar" type="MarginContainer" unique_id=1008505159]
+z_index = 5
+anchors_preset = -1
+anchor_right = 0.20833333
+anchor_bottom = 0.055555556
+offset_right = -50.0
+offset_bottom = -5.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_7yw3h")
+metadata/_edit_use_anchors_ = true
 
-[node name="bg" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -14.0
-offset_top = -1.0
-offset_right = 14.0
-offset_bottom = 2.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.54509807)
+[node name="Bar" type="MarginContainer" parent="." unique_id=623379593]
+layout_mode = 2
 
-[node name="hp" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -14.0
-offset_top = -1.0
-offset_right = 14.0
-offset_bottom = 2.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="bg" type="ColorRect" parent="Bar" unique_id=1979023653]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 15)
+layout_mode = 2
+theme = SubResource("Theme_340gp")
+color = Color(0.26208776, 1.6559986e-06, 9.866804e-07, 1)
+
+[node name="hp" type="ColorRect" parent="Bar" unique_id=1470698187]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 15)
+layout_mode = 2
+theme = SubResource("Theme_340gp")
 color = Color(0.8150196, 3.5857408e-06, 7.70092e-07, 1)

@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://6oay2ktv6ylx"]
+[gd_scene format=3 uid="uid://6oay2ktv6ylx"]
 
 [ext_resource type="Script" uid="uid://bailxyw40o2o7" path="res://Scripts/UI/pause_menu.gd" id="1_8rf44"]
+[ext_resource type="Theme" uid="uid://f2wfw56qjs0a" path="res://Resources/button.tres" id="2_oykix"]
 [ext_resource type="FontFile" uid="uid://c6lvcqnjf517l" path="res://Sprites/Fonts/MedodicaRegular.otf" id="2_r2i2h"]
 
-[node name="PauseMenu" type="Control"]
+[node name="PauseMenu" type="Control" unique_id=18186667]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -12,158 +13,116 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8rf44")
+metadata/_edit_use_anchors_ = true
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -2.0
-offset_top = -5.0
-offset_right = 19.0
-offset_bottom = 15.0
-color = Color(1, 0.64705884, 0.73333335, 0.2509804)
-
-[node name="BaseMenu" type="MarginContainer" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 181.5
-offset_top = 115.0
-offset_right = -181.5
-offset_bottom = -115.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VFlowContainer" type="HFlowContainer" parent="BaseMenu"]
-layout_mode = 2
-
-[node name="ColorRect" type="ColorRect" parent="BaseMenu/VFlowContainer"]
-custom_minimum_size = Vector2(117, 40)
-layout_mode = 2
-color = Color(0.5521021, 0.17160293, 0.42320028, 1)
-
-[node name="ResumeButton" type="Button" parent="BaseMenu/VFlowContainer/ColorRect"]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1098497132]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(1, 0.64705884, 0.73333335, 0.2509804)
+
+[node name="BaseMenu" type="MarginContainer" parent="." unique_id=1663992354]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -54.0
+offset_top = -60.0
+offset_right = 54.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BaseMenu" unique_id=1167781620]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ResumeButton" type="Button" parent="BaseMenu/VBoxContainer" unique_id=210662368]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("2_oykix")
 theme_override_fonts/font = ExtResource("2_r2i2h")
 theme_override_font_sizes/font_size = 32
 text = "Resume"
-flat = true
 
-[node name="ColorRect2" type="ColorRect" parent="BaseMenu/VFlowContainer"]
-custom_minimum_size = Vector2(117, 40)
-layout_mode = 2
-color = Color(0.5521021, 0.17160293, 0.42320028, 1)
-
-[node name="SettingsButton" type="Button" parent="BaseMenu/VFlowContainer/ColorRect2"]
+[node name="SettingsButton" type="Button" parent="BaseMenu/VBoxContainer" unique_id=1962496242]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("2_oykix")
 theme_override_fonts/font = ExtResource("2_r2i2h")
 theme_override_font_sizes/font_size = 32
 text = "Settings
 "
-flat = true
 
-[node name="ColorRect3" type="ColorRect" parent="BaseMenu/VFlowContainer"]
-custom_minimum_size = Vector2(117, 40)
-layout_mode = 2
-color = Color(0.5521021, 0.17160293, 0.42320028, 1)
-
-[node name="QuitButton" type="Button" parent="BaseMenu/VFlowContainer/ColorRect3"]
+[node name="QuitButton" type="Button" parent="BaseMenu/VBoxContainer" unique_id=1950787492]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("2_oykix")
 theme_override_fonts/font = ExtResource("2_r2i2h")
 theme_override_font_sizes/font_size = 32
 text = "Quit
 "
-flat = true
 
-[node name="SettingsMenu" type="MarginContainer" parent="."]
+[node name="SettingsMenu" type="MarginContainer" parent="." unique_id=1254259842]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 181.5
-offset_top = 115.0
-offset_right = -181.5
-offset_bottom = -115.0
+visible = false
+layout_mode = 0
+offset_left = 186.0
+offset_top = 71.0
+offset_right = 294.0
+offset_bottom = 199.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VFlowContainer" type="HFlowContainer" parent="SettingsMenu"]
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsMenu" unique_id=1704196927]
 layout_mode = 2
+theme_override_constants/separation = 10
 
-[node name="ColorRect" type="ColorRect" parent="SettingsMenu/VFlowContainer"]
-custom_minimum_size = Vector2(117, 40)
+[node name="ResumeButton" type="Button" parent="SettingsMenu/VBoxContainer" unique_id=1587804660]
 layout_mode = 2
-color = Color(0.5521021, 0.17160293, 0.42320028, 1)
-
-[node name="ResumeButton" type="Button" parent="SettingsMenu/VFlowContainer/ColorRect"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("2_oykix")
 theme_override_fonts/font = ExtResource("2_r2i2h")
 theme_override_font_sizes/font_size = 32
 text = "Resume"
-flat = true
 
-[node name="ColorRect2" type="ColorRect" parent="SettingsMenu/VFlowContainer"]
-custom_minimum_size = Vector2(117, 40)
-layout_mode = 2
-color = Color(0.5521021, 0.17160293, 0.42320028, 1)
-
-[node name="VolumeSlider" type="HSlider" parent="SettingsMenu/VFlowContainer/ColorRect2"]
+[node name="VolumeSlider" type="HSlider" parent="SettingsMenu/VBoxContainer" unique_id=1922002618]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("2_oykix")
 min_value = -10.0
 max_value = 6.0
 tick_count = 10
 ticks_on_borders = true
 ticks_position = 2
 
-[node name="ColorRect3" type="ColorRect" parent="SettingsMenu/VFlowContainer"]
-custom_minimum_size = Vector2(117, 40)
-layout_mode = 2
-color = Color(0.5521021, 0.17160293, 0.42320028, 1)
-
-[node name="HintButton" type="CheckButton" parent="SettingsMenu/VFlowContainer/ColorRect3"]
+[node name="DebugButton" type="CheckButton" parent="SettingsMenu/VBoxContainer" unique_id=1558812851]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 0.5
-offset_right = 118.0
-offset_bottom = 41.0
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("2_oykix")
 theme_override_fonts/font = ExtResource("2_r2i2h")
 theme_override_font_sizes/font_size = 32
-button_pressed = true
-text = "Hints"
+text = "Debug"
 
-[connection signal="pressed" from="BaseMenu/VFlowContainer/ColorRect/ResumeButton" to="." method="_on_resume_button_pressed"]
-[connection signal="pressed" from="BaseMenu/VFlowContainer/ColorRect2/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="BaseMenu/VFlowContainer/ColorRect3/QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="pressed" from="SettingsMenu/VFlowContainer/ColorRect/ResumeButton" to="." method="_on_resume_button_pressed"]
-[connection signal="value_changed" from="SettingsMenu/VFlowContainer/ColorRect2/VolumeSlider" to="." method="_on_h_slider_value_changed"]
-[connection signal="pressed" from="SettingsMenu/VFlowContainer/ColorRect3/HintButton" to="." method="_on_hint_button_pressed"]
+[connection signal="pressed" from="BaseMenu/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="BaseMenu/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="BaseMenu/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="SettingsMenu/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="value_changed" from="SettingsMenu/VBoxContainer/VolumeSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="pressed" from="SettingsMenu/VBoxContainer/DebugButton" to="." method="_on_hint_button_pressed"]

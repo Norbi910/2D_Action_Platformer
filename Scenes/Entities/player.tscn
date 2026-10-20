@@ -533,13 +533,21 @@ one_shot = true
 
 [node name="RespawnTimer" type="Timer" parent="Timers" unique_id=1251889452]
 unique_name_in_owner = true
+one_shot = true
 
 [node name="HitSlowTimer" type="Timer" parent="Timers" unique_id=883958376]
 unique_name_in_owner = true
 wait_time = 0.05
+one_shot = true
 
 [node name="DashTimer" type="Timer" parent="Timers" unique_id=1151584450]
 unique_name_in_owner = true
+one_shot = true
+
+[node name="DashCooldownTimer" type="Timer" parent="Timers" unique_id=1225568069]
+unique_name_in_owner = true
+wait_time = 2.0
+one_shot = true
 
 [node name="HealthComponent" parent="." unique_id=68109700 instance=ExtResource("6_8erm5")]
 unique_name_in_owner = true
@@ -562,6 +570,7 @@ texture = ExtResource("2_fkybt")
 hframes = 4
 
 [node name="AttackComponent" parent="Pivot" unique_id=1489064506 instance=ExtResource("8_tx1dd")]
+unique_name_in_owner = true
 collision_layer = 0
 collision_mask = 8
 
@@ -573,10 +582,11 @@ disabled = true
 debug_color = Color(0.9113462, 0.21197182, 0.52477556, 0.41960785)
 
 [node name="HitBoxComponent" parent="Pivot" unique_id=352873461 node_paths=PackedStringArray("health_component", "hit_flash") instance=ExtResource("7_f1ek2")]
+unique_name_in_owner = true
 collision_layer = 2
 collision_mask = 0
 health_component = NodePath("../../HealthComponent")
-invincibility_time = 1.0
+invincibility_time = 0.6
 hit_flash = NodePath("../../HitFlashComponent")
 
 [node name="Hitbox" type="CollisionShape2D" parent="Pivot/HitBoxComponent" unique_id=783719210]
@@ -595,6 +605,7 @@ position = Vector2(1, 11)
 shape = SubResource("CircleShape2D_8erm5")
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=508734414]
+visible = false
 position = Vector2(0, 7.0000005)
 scale = Vector2(1.315, 1.315)
 color = Color(0.94030315, 0.66111696, 0.28996044, 1)
@@ -605,6 +616,7 @@ texture = SubResource("GradientTexture2D_f5ba2")
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="Timers/RespawnTimer" to="." method="_on_respawn_timer_timeout"]
 [connection signal="timeout" from="Timers/HitSlowTimer" to="." method="_on_hit_slow_timer_timeout"]
+[connection signal="timeout" from="Timers/DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="hp_changed" from="HealthComponent" to="." method="_on_hp_changed"]
 [connection signal="damage_dealt" from="Pivot/AttackComponent" to="." method="_on_attack_component_damage_dealt"]
 [connection signal="on_knockback" from="Pivot/HitBoxComponent" to="." method="_on_hit_box_knockback"]

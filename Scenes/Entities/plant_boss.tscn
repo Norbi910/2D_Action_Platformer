@@ -1,0 +1,665 @@
+[gd_scene format=3 uid="uid://pkpih8b51q0t"]
+
+[ext_resource type="Script" uid="uid://2h1w2manavo5" path="res://Scripts/Entities/PlantBoss/plant_boss.gd" id="1_jb84t"]
+[ext_resource type="PackedScene" uid="uid://cdnmaw550r223" path="res://Scenes/UI/hp_bar.tscn" id="2_2euwj"]
+[ext_resource type="Shader" uid="uid://dfbcw0y4ieh7m" path="res://Resources/Shaders/better_flash.gdshader" id="2_awrjv"]
+[ext_resource type="Texture2D" uid="uid://bi6ggfcfeirns" path="res://Sprites/Boss/PlantBoss.png" id="2_oj5hy"]
+[ext_resource type="PackedScene" uid="uid://bb8nlyevsjr62" path="res://Scenes/Components/attack_component.tscn" id="2_s4ilw"]
+[ext_resource type="PackedScene" uid="uid://cf4duabfcn6fa" path="res://Scenes/Components/hit_flash_component.tscn" id="3_lo54i"]
+[ext_resource type="PackedScene" uid="uid://bml8o3fl7yfw0" path="res://Scenes/Components/health_component.tscn" id="4_oj5hy"]
+[ext_resource type="PackedScene" uid="uid://mca7y2rl04ft" path="res://Scenes/Components/hit_box_component.tscn" id="5_lo54i"]
+[ext_resource type="Texture2D" uid="uid://dsk2owfhgr5jh" path="res://Sprites/Boss/PlantBossTentacles.png" id="7_6urjk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6urjk"]
+shader = ExtResource("2_awrjv")
+shader_parameter/color_parameter = Color(1, 1, 1, 1)
+shader_parameter/enabled = false
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_awrjv"]
+radius = 28.0
+height = 74.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_deinn"]
+shader = ExtResource("2_awrjv")
+shader_parameter/color_parameter = Color(1, 1, 1, 1)
+shader_parameter/enabled = false
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oj5hy"]
+radius = 10.009781
+height = 21.998837
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vbsbg"]
+radius = 9.999836
+height = 21.999638
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lo54i"]
+radius = 4.0
+height = 98.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_poi01"]
+shader = ExtResource("2_awrjv")
+shader_parameter/color_parameter = Color(1, 1, 1, 1)
+shader_parameter/enabled = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yfa2x"]
+shader = ExtResource("2_awrjv")
+shader_parameter/color_parameter = Color(1, 1, 1, 1)
+shader_parameter/enabled = false
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_deinn"]
+height = 116.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6urjk"]
+radius = 59.008472
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vbsbg"]
+radius = 50.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v1yew"]
+shader = ExtResource("2_awrjv")
+shader_parameter/color_parameter = Color(1, 1, 1, 1)
+shader_parameter/enabled = false
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6urjk"]
+height = 125.98642
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2ts6g"]
+radius = 50.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_deinn"]
+radius = 60.00833
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_oj5hy"]
+load_path = "res://.godot/imported/icon.svg-b67cfb692a937e61d2bda8561d9e8db7.ctex"
+
+[sub_resource type="Animation" id="Animation_d3c8g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Phase2/RightTentacle/AttackComponent/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Phase2/LeftTentacle/AttackComponent/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Phase2/Sprite2D2:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Phase1/Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HealthComponent:damage_reduction")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Phase3/LeftTentacle/Sprite2D:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Phase3/LeftTentacle/AttackComponent/CollisionShape2D:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Phase3/RightTentacle/Sprite2D:frame")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Phase3/RightTentacle/AttackComponent/CollisionShape2D:disabled")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Phase3/LeftTentacle/PlatformCollision/LeafCollision:disabled")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Phase3/RightTentacle/PlatformCollision/LeafCollision:disabled")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2euwj"]
+_data = {
+&"RESET": SubResource("Animation_d3c8g")
+}
+
+[sub_resource type="Animation" id="Animation_awrjv"]
+length = 3.0000125
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Phase1/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.0000124),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HealthComponent:damage_reduction")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.0000124),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0.7, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_awrjv"]
+_data = {
+&"Shell": SubResource("Animation_awrjv")
+}
+
+[sub_resource type="Animation" id="Animation_6urjk"]
+resource_name = "attack"
+length = 1.0000125
+step = 0.083333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Phase2/RightTentacle/AttackComponent/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5833333, 0.9166667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Phase2/LeftTentacle/AttackComponent/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5833333, 0.9166667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Phase2/Sprite2D2:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.41666666, 0.5833333, 0.8333333, 0.9166667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 3, 4, 3, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_deinn"]
+_data = {
+&"SlamAttack": SubResource("Animation_6urjk")
+}
+
+[sub_resource type="Animation" id="Animation_deinn"]
+resource_name = "SlamLeft"
+length = 0.7000050104308874
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Phase3/LeftTentacle/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.15, 0.65, 0.6999999),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 5, 4, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Phase3/LeftTentacle/AttackComponent/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Phase3/LeftTentacle/PlatformCollision/LeafCollision:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.700005),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_poi01"]
+resource_name = "SlamRight"
+length = 0.7000050104308874
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Phase3/RightTentacle/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.15, 0.65, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Phase3/RightTentacle/AttackComponent/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Phase3/RightTentacle/PlatformCollision/LeafCollision:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.700005),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yfa2x"]
+_data = {
+&"SlamLeft": SubResource("Animation_deinn"),
+&"SlamRight": SubResource("Animation_poi01")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s4ilw"]
+radius = 12.0
+height = 56.0
+
+[node name="PlantBoss" type="CharacterBody2D" unique_id=244162923]
+collision_layer = 0
+script = ExtResource("1_jb84t")
+
+[node name="Phase1" type="Node2D" parent="." unique_id=1574085536]
+unique_name_in_owner = true
+position = Vector2(0, -64)
+
+[node name="Sprite2D" type="Sprite2D" parent="Phase1" unique_id=974959524]
+material = SubResource("ShaderMaterial_6urjk")
+position = Vector2(4, -63)
+texture = ExtResource("2_oj5hy")
+hframes = 6
+
+[node name="HitFlashComponent" parent="Phase1" unique_id=89985868 node_paths=PackedStringArray("sprite", "healthComponent") instance=ExtResource("3_lo54i")]
+sprite = NodePath("../Sprite2D")
+healthComponent = NodePath("../../HealthComponent")
+flash_color = Color(1, 0.90588236, 0.8980392, 1)
+
+[node name="HitBoxComponent2" parent="Phase1" unique_id=1737699695 node_paths=PackedStringArray("health_component") instance=ExtResource("5_lo54i")]
+collision_layer = 8
+collision_mask = 0
+health_component = NodePath("../../HealthComponent")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Phase1/HitBoxComponent2" unique_id=1598967080]
+position = Vector2(0, 32)
+shape = SubResource("CapsuleShape2D_awrjv")
+
+[node name="SpikeTimer" type="Timer" parent="Phase1" unique_id=786344683]
+one_shot = true
+
+[node name="Phase2" type="Node2D" parent="." unique_id=187401283]
+unique_name_in_owner = true
+process_mode = 4
+visible = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Phase2" unique_id=804804459]
+material = SubResource("ShaderMaterial_deinn")
+position = Vector2(0, -128)
+texture = ExtResource("2_oj5hy")
+hframes = 6
+frame = 2
+
+[node name="HitFlashComponent" parent="Phase2" unique_id=1113974850 node_paths=PackedStringArray("sprite", "healthComponent") instance=ExtResource("3_lo54i")]
+sprite = NodePath("../Sprite2D2")
+healthComponent = NodePath("../../HealthComponent")
+flash_color = Color(1, 0.90588236, 0.8980392, 1)
+
+[node name="RightTentacle" type="Node2D" parent="Phase2" unique_id=420182950]
+
+[node name="AttackComponent" parent="Phase2/RightTentacle" unique_id=2122220119 instance=ExtResource("2_s4ilw")]
+position = Vector2(32, -3.0000002)
+rotation = -1.5811073
+scale = Vector2(0.112, -1.36)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Phase2/RightTentacle/AttackComponent" unique_id=1147295303]
+position = Vector2(1.9073486e-06, -9.536743e-07)
+rotation = -3.1415927
+scale = Vector2(8.928571, -0.7352941)
+shape = SubResource("CapsuleShape2D_oj5hy")
+disabled = true
+
+[node name="LeftTentacle" type="Node2D" parent="Phase2" unique_id=2092826315]
+
+[node name="AttackComponent" parent="Phase2/LeftTentacle" unique_id=1883116303 instance=ExtResource("2_s4ilw")]
+position = Vector2(-27.999998, -0.99999994)
+rotation = -4.7066426
+scale = Vector2(0.112, -1.36)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Phase2/LeftTentacle/AttackComponent" unique_id=793463792]
+position = Vector2(-17.651625, -2.94958)
+rotation = -3.1415927
+scale = Vector2(8.928571, -0.7352941)
+shape = SubResource("CapsuleShape2D_vbsbg")
+disabled = true
+
+[node name="HitBoxComponent2" parent="Phase2" unique_id=882925040 node_paths=PackedStringArray("health_component") instance=ExtResource("5_lo54i")]
+collision_layer = 8
+collision_mask = 0
+health_component = NodePath("../../HealthComponent")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Phase2/HitBoxComponent2" unique_id=1588640885]
+position = Vector2(-3, -133)
+shape = SubResource("CapsuleShape2D_awrjv")
+
+[node name="HitBoxComponent" parent="Phase2" unique_id=1419539408 node_paths=PackedStringArray("health_component") instance=ExtResource("5_lo54i")]
+collision_layer = 8
+collision_mask = 0
+health_component = NodePath("../../HealthComponent")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Phase2/HitBoxComponent" unique_id=163372979]
+position = Vector2(-3, -48)
+shape = SubResource("CapsuleShape2D_lo54i")
+
+[node name="Phase3" type="Node2D" parent="." unique_id=1838167953]
+unique_name_in_owner = true
+process_mode = 4
+visible = false
+
+[node name="HitFlashComponent" parent="Phase3" unique_id=252061376 node_paths=PackedStringArray("sprite", "healthComponent") instance=ExtResource("3_lo54i")]
+sprite = NodePath("../Sprite2D3")
+healthComponent = NodePath("../../HealthComponent")
+flash_color = Color(1, 0.90588236, 0.8980392, 1)
+
+[node name="Label" type="Label" parent="Phase3" unique_id=335752489]
+offset_left = 201.0
+offset_top = -256.0
+offset_right = 392.0
+offset_bottom = -103.0
+text = "When in 3rd phase the boss attacks at its feet .
+the player should be able to step on the leaves while the boss isnt attacking"
+autowrap_mode = 3
+
+[node name="Sprite2D3" type="Sprite2D" parent="Phase3" unique_id=486689719]
+material = SubResource("ShaderMaterial_poi01")
+position = Vector2(0, -128)
+texture = ExtResource("2_oj5hy")
+hframes = 6
+frame = 5
+
+[node name="RightTentacle" type="Node2D" parent="Phase3" unique_id=1440972256]
+unique_name_in_owner = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Phase3/RightTentacle" unique_id=1081128945]
+material = SubResource("ShaderMaterial_yfa2x")
+position = Vector2(125, -128)
+texture = ExtResource("7_6urjk")
+hframes = 6
+
+[node name="AttackComponent" parent="Phase3/RightTentacle" unique_id=811342783 instance=ExtResource("2_s4ilw")]
+position = Vector2(32, -3.0000002)
+rotation = -1.5707964
+scale = Vector2(0.112, -1.36)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Phase3/RightTentacle/AttackComponent" unique_id=52778406]
+position = Vector2(-17.857185, -76.47059)
+rotation = -3.1415927
+scale = Vector2(8.928571, -0.7352941)
+shape = SubResource("CapsuleShape2D_deinn")
+disabled = true
+
+[node name="AttackEnable" type="Area2D" parent="Phase3/RightTentacle" unique_id=2021046641]
+position = Vector2(136, 0)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2DLeaf" type="CollisionShape2D" parent="Phase3/RightTentacle/AttackEnable" unique_id=1178558641]
+position = Vector2(-54, -126)
+shape = SubResource("CircleShape2D_6urjk")
+
+[node name="CollisionShape2DGround" type="CollisionShape2D" parent="Phase3/RightTentacle/AttackEnable" unique_id=1570114770]
+shape = SubResource("CircleShape2D_vbsbg")
+
+[node name="PlatformCollision" type="StaticBody2D" parent="Phase3/RightTentacle" unique_id=1157727331]
+collision_mask = 0
+
+[node name="LeafCollision" type="CollisionPolygon2D" parent="Phase3/RightTentacle/PlatformCollision" unique_id=917622862]
+position = Vector2(0, 1)
+polygon = PackedVector2Array(21, -123, 40, -129, 85, -129, 107, -135, 138, -150, 138, -138, 103, -125)
+one_way_collision = true
+one_way_collision_margin = 9.7
+
+[node name="HitFlashComponent" parent="Phase3/RightTentacle" unique_id=1085661728 node_paths=PackedStringArray("sprite", "healthComponent") instance=ExtResource("3_lo54i")]
+sprite = NodePath("../Sprite2D")
+healthComponent = NodePath("../../../HealthComponent")
+flash_color = Color(1, 0.90588236, 0.8980392, 1)
+
+[node name="LeftTentacle" type="Node2D" parent="Phase3" unique_id=138927366]
+unique_name_in_owner = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Phase3/LeftTentacle" unique_id=530936995]
+material = SubResource("ShaderMaterial_v1yew")
+position = Vector2(-140, -128)
+texture = ExtResource("7_6urjk")
+hframes = 6
+frame = 3
+
+[node name="AttackComponent" parent="Phase3/LeftTentacle" unique_id=2035591187 instance=ExtResource("2_s4ilw")]
+position = Vector2(-27.999998, -0.99999994)
+rotation = 1.5707964
+scale = Vector2(0.112, -1.36)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Phase3/LeftTentacle/AttackComponent" unique_id=1282337462]
+position = Vector2(6.2080774, -88.96912)
+rotation = -3.1415927
+scale = Vector2(8.928571, -0.7352941)
+shape = SubResource("CapsuleShape2D_6urjk")
+disabled = true
+
+[node name="AttackEnable" type="Area2D" parent="Phase3/LeftTentacle" unique_id=1246508715]
+position = Vector2(-150, 1)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2DGround" type="CollisionShape2D" parent="Phase3/LeftTentacle/AttackEnable" unique_id=335687239]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_2ts6g")
+
+[node name="CollisionShape2DLeaf" type="CollisionShape2D" parent="Phase3/LeftTentacle/AttackEnable" unique_id=1381634865]
+position = Vector2(57, -134)
+shape = SubResource("CircleShape2D_deinn")
+
+[node name="PlatformCollision" type="StaticBody2D" parent="Phase3/LeftTentacle" unique_id=321027190]
+position = Vector2(-180, -1)
+scale = Vector2(-1, 1)
+collision_mask = 0
+
+[node name="LeafCollision" type="CollisionPolygon2D" parent="Phase3/LeftTentacle/PlatformCollision" unique_id=202529954]
+position = Vector2(-170, -1)
+polygon = PackedVector2Array(21, -123, 40, -129, 85, -129, 107, -135, 138, -150, 138, -138, 103, -125)
+one_way_collision = true
+one_way_collision_margin = 9.7
+
+[node name="HitFlashComponent" parent="Phase3/LeftTentacle" unique_id=208804024 node_paths=PackedStringArray("sprite", "healthComponent") instance=ExtResource("3_lo54i")]
+sprite = NodePath("../Sprite2D")
+healthComponent = NodePath("../../../HealthComponent")
+flash_color = Color(1, 0.90588236, 0.8980392, 1)
+
+[node name="HitBoxComponent2" parent="Phase3" unique_id=1042433062 node_paths=PackedStringArray("health_component") instance=ExtResource("5_lo54i")]
+collision_layer = 8
+collision_mask = 0
+health_component = NodePath("../../HealthComponent")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Phase3/HitBoxComponent2" unique_id=1671035762]
+position = Vector2(-3, -201)
+shape = SubResource("CapsuleShape2D_awrjv")
+
+[node name="Phase4" type="Node2D" parent="." unique_id=2115972445]
+unique_name_in_owner = true
+process_mode = 4
+visible = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="Phase4" unique_id=717801087]
+modulate = Color(0.103743516, 0.10374353, 0.103743516, 1)
+position = Vector2(-0.15638924, -29.156387)
+scale = Vector2(0.43505642, 0.43505642)
+texture = SubResource("CompressedTexture2D_oj5hy")
+
+[node name="AttackCooldown" type="Timer" parent="." unique_id=1195007977]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="MoveTimer" type="Timer" parent="." unique_id=1811030586]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1628005082]
+libraries/ = SubResource("AnimationLibrary_2euwj")
+libraries/Phase1 = SubResource("AnimationLibrary_awrjv")
+libraries/Phase2 = SubResource("AnimationLibrary_deinn")
+libraries/Phase3 = SubResource("AnimationLibrary_yfa2x")
+
+[node name="HPBar" parent="." unique_id=140443038 node_paths=PackedStringArray("healthComponent") instance=ExtResource("2_2euwj")]
+anchors_preset = -1
+offset_left = -14.0
+offset_top = 6.9999995
+offset_right = 86.0
+offset_bottom = 22.0
+scale = Vector2(0.29117122, 0.29117122)
+healthComponent = NodePath("../HealthComponent")
+
+[node name="HealthComponent" parent="." unique_id=1087537920 node_paths=PackedStringArray("hp_bar") instance=ExtResource("4_oj5hy")]
+unique_name_in_owner = true
+MAX_HEALTH = 500.0
+hp_bar = NodePath("../HPBar")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=224046374]
+visible = false
+position = Vector2(-2, -28)
+shape = SubResource("CapsuleShape2D_s4ilw")
+
+[connection signal="hp_changed" from="HealthComponent" to="." method="_on_hp_changed"]

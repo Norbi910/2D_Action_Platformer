@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="PlayerData" format=3 uid="uid://c4xbyilpgpniu"]
+
+[ext_resource type="Script" uid="uid://ds7pvhxgss578" path="res://Scripts/PlayerData.gd" id="1_oyjea"]
+
+[resource]
+script = ExtResource("1_oyjea")
+MaxHealth = 100.0
+Health = 100.0
+Speed = 180.0
+Damage = 20.0
+IFrames = 0.6
+JumpHeight = 128.0
+canAttack = true
+canDoubleJump = true
+canDash = true
+metadata/_custom_type_script = "uid://ds7pvhxgss578"

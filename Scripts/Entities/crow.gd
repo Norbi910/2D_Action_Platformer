@@ -3,7 +3,6 @@ extends Enemy
 var target: Area2D
 var direction: Vector2
 var is_alive: bool = true
-@export var speed: float = 250.0
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var collision: CollisionShape2D = $Collision

@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://cic46lvx1hedc"]
+
+[ext_resource type="Script" uid="uid://dwuyxcfsnuf8s" path="res://Scenes/UI/upgrade.gd" id="1_gu68h"]
+[ext_resource type="PackedScene" uid="uid://bdafxqjuj0dy7" path="res://Scenes/UI/upgrade_card.tscn" id="2_7k6jh"]
+[ext_resource type="Script" uid="uid://dbywqrgik5j7i" path="res://Scripts/UI/UpgradeResource.gd" id="2_gu68h"]
+[ext_resource type="Resource" uid="uid://d3auqcb1mn4j0" path="res://Resources/Upgrade/HP_UP.tres" id="3_h0dr2"]
+[ext_resource type="Resource" uid="uid://dypmvrgv6u2th" path="res://Resources/Upgrade/DMG_UP.tres" id="4_pxo5f"]
+[ext_resource type="Resource" uid="uid://cmfuabdanrbgg" path="res://Resources/Upgrade/Speed_UP.tres" id="5_b1d7n"]
+
+[node name="UpgradesUI" type="MarginContainer" unique_id=2135719142]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gu68h")
+Upgrades = Array[ExtResource("2_gu68h")]([ExtResource("3_h0dr2"), ExtResource("4_pxo5f"), ExtResource("5_b1d7n")])
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=64976404]
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="UpgradeCard1" parent="HBoxContainer" unique_id=526279487 instance=ExtResource("2_7k6jh")]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_right = NodePath("../UpgradeCard2")
+focus_next = NodePath("../UpgradeCard2")
+
+[node name="UpgradeCard2" parent="HBoxContainer" unique_id=1179402515 instance=ExtResource("2_7k6jh")]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_left = NodePath("../UpgradeCard1")
+focus_neighbor_right = NodePath("../UpgradeCard3")
+focus_next = NodePath("../UpgradeCard3")
+focus_previous = NodePath("../UpgradeCard1")
+
+[node name="UpgradeCard3" parent="HBoxContainer" unique_id=2059795631 instance=ExtResource("2_7k6jh")]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_left = NodePath("../UpgradeCard2")
+focus_previous = NodePath("../UpgradeCard2")
+
+[connection signal="chosen" from="HBoxContainer/UpgradeCard1" to="." method="_on_upgrade_card_1_chosen"]
+[connection signal="chosen" from="HBoxContainer/UpgradeCard2" to="." method="_on_upgrade_card_2_chosen"]
+[connection signal="chosen" from="HBoxContainer/UpgradeCard3" to="." method="_on_upgrade_card_3_chosen"]

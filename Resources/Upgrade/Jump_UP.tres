@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="UpgradeResource" format=3 uid="uid://bm8kjmue2u6gc"]
+
+[ext_resource type="Script" uid="uid://dbywqrgik5j7i" path="res://Scripts/UI/UpgradeResource.gd" id="1_lmobn"]
+
+[resource]
+script = ExtResource("1_lmobn")
+upgradeName = "Jump Height up"
+description = "Bunny"
+statName = 3
+amount = 16.0
+rarity = 2
+metadata/_custom_type_script = "uid://dbywqrgik5j7i"

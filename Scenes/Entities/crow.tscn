@@ -267,6 +267,10 @@ radius = 300.0
 collision_layer = 8
 collision_mask = 9
 script = ExtResource("1_c25kj")
+baseSpeed = 250.0
+speedScalingFactor = 1.2
+baseMaxHealth = 15.0
+healthScalingFactor = 2.0
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=725901849]
 rotation = 1.5707964
@@ -277,16 +281,14 @@ shape = SubResource("CapsuleShape2D_okm6x")
 sprite = NodePath("../Sprite2D")
 healthComponent = NodePath("../HealthComponent")
 
-[node name="HealthComponent" parent="." unique_id=1554441793 node_paths=PackedStringArray("hp_bar") instance=ExtResource("2_chaky")]
+[node name="HealthComponent" parent="." unique_id=1554441793 instance=ExtResource("2_chaky")]
 position = Vector2(0, -16)
 MAX_HEALTH = 15.0
-hp_bar = NodePath("HPBar")
 
 [node name="HPBar" parent="HealthComponent" unique_id=497513154 instance=ExtResource("3_c25kj")]
 visible = false
 offset_top = -8.0
 offset_bottom = -8.0
-metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1274542721]
 material = SubResource("ShaderMaterial_ppp0m")

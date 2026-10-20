@@ -12,7 +12,6 @@ extends Enemy
 
 var state : Util.Boss_State = Util.Boss_State.ON_GROUND
 var below_player : bool
-var damage: float
 var can_change_state: bool = true
 var moving_vertically: bool = false
 

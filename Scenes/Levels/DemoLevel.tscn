@@ -19,7 +19,7 @@
 [ext_resource type="Resource" uid="uid://dcmmki52158lx" path="res://Resources/Boss/burrow.tres" id="15_1fxyu"]
 [ext_resource type="Resource" uid="uid://dajg0yam1uujx" path="res://Resources/Boss/bite_attack.tres" id="16_bujq5"]
 [ext_resource type="Script" uid="uid://v1cqrhhvx3ff" path="res://Scripts/Boss/boss_resource.gd" id="17_cyn6n"]
-[ext_resource type="PackedScene" uid="uid://x63lcjbcaif2" path="res://Scenes/UI/hud.tscn" id="20_340gp"]
+[ext_resource type="PackedScene" uid="uid://d3affisu7s1td" path="res://Scenes/Components/SceneTransitionCaller.tscn" id="21_uha3m"]
 
 [sub_resource type="Resource" id="Resource_y26fe"]
 script = ExtResource("17_cyn6n")
@@ -45,6 +45,9 @@ fill_to = Vector2(0, 1)
 [sub_resource type="CircleShape2D" id="CircleShape2D_vbsbg"]
 radius = 22.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vbsbg"]
+size = Vector2(168, 113)
+
 [node name="OnlabDemoLevel" type="Node2D" unique_id=1833050363]
 script = ExtResource("1_daumt")
 
@@ -53,7 +56,6 @@ light_mask = 2
 z_index = -10
 
 [node name="Parallax2D3" type="Parallax2D" parent="BackGround" unique_id=1181967405]
-visible = false
 scroll_scale = Vector2(0, 0)
 repeat_size = Vector2(512, 0)
 
@@ -64,7 +66,6 @@ region_enabled = true
 region_rect = Rect2(0, -95.15828, 520.5003, 364.1001)
 
 [node name="Parallax2D2" type="Parallax2D" parent="BackGround" unique_id=568909232]
-visible = false
 scale = Vector2(1, 1.27)
 scroll_scale = Vector2(0.25, 0.1)
 scroll_offset = Vector2(0, 110.00001)
@@ -113,9 +114,9 @@ text = "Use A and D or the
 Left/Right Arrow Keys to move
 Space to Jump
 "
-autowrap_mode = 3
 
 [node name="NoLabel" type="Label" parent="Labels" unique_id=1007813957]
+custom_maximum_size = Vector2(100, 100)
 layout_mode = 0
 offset_left = -116.0
 offset_top = -587.0
@@ -127,29 +128,16 @@ theme_override_constants/shadow_offset_y = 3
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("10_yupnh")
 text = "There's nothing up here"
-autowrap_mode = 3
-
-[node name="NoLabel" type="Label" parent="Labels/NoLabel" unique_id=1416826046]
-layout_mode = 0
-offset_left = -405.0
-offset_top = 207.0
-offset_right = -300.0
-offset_bottom = 291.0
-theme_override_colors/font_shadow_color = Color(0.5949837, 0.15616107, 0.03471772, 0)
-theme_override_constants/shadow_offset_x = 3
-theme_override_constants/shadow_offset_y = 3
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("10_yupnh")
-text = "Boss
-"
+horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="MoveLabel2" type="Label" parent="Labels" unique_id=2057431778]
+custom_maximum_size = Vector2(150, -1)
 layout_mode = 0
 offset_left = 1064.0
 offset_top = -294.0
-offset_right = 1180.0
-offset_bottom = -221.0
+offset_right = 1214.0
+offset_bottom = -240.0
 theme_override_colors/font_shadow_color = Color(0.5949837, 0.15616107, 0.03471772, 0)
 theme_override_constants/shadow_offset_x = 3
 theme_override_constants/shadow_offset_y = 3
@@ -157,9 +145,11 @@ theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("10_yupnh")
 text = "You can also nudge the camera 
 up/down with W/S"
+horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="GlideLabel" type="Label" parent="Labels" unique_id=1231368062]
+custom_maximum_size = Vector2(100, 100)
 layout_mode = 0
 offset_left = 1661.0
 offset_top = -449.0
@@ -175,11 +165,12 @@ horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="AttackLabel" type="Label" parent="Labels" unique_id=464824114]
+custom_maximum_size = Vector2(100, 100)
 layout_mode = 0
 offset_left = 342.0
 offset_top = -192.0
-offset_right = 441.0
-offset_bottom = -119.0
+offset_right = 442.0
+offset_bottom = -157.0
 theme_override_colors/font_shadow_color = Color(0.5949837, 0.15616107, 0.03471772, 0)
 theme_override_constants/shadow_offset_x = 3
 theme_override_constants/shadow_offset_y = 3
@@ -190,11 +181,12 @@ horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="InteractLabel" type="Label" parent="Labels" unique_id=1719303450]
+custom_maximum_size = Vector2(100, 100)
 layout_mode = 0
 offset_left = 752.0
 offset_top = -346.0
-offset_right = 833.0
-offset_bottom = -273.0
+offset_right = 852.0
+offset_bottom = -311.0
 theme_override_colors/font_shadow_color = Color(0.5949837, 0.15616107, 0.03471772, 0)
 theme_override_constants/shadow_offset_x = 3
 theme_override_constants/shadow_offset_y = 3
@@ -244,9 +236,9 @@ position = Vector2(1784, 94)
 [node name="BigAnt" parent="Enemies" unique_id=681989126 instance=ExtResource("7_daumt")]
 position = Vector2(3100, -186)
 scale = Vector2(2, 2)
-speed = 80.0
-max_hp = 100.0
-damage = 40.0
+baseSpeed = 30.0
+baseMaxHealth = 200.0
+baseDamage = 20.0
 
 [node name="Ant9" parent="Enemies" unique_id=1904318784 instance=ExtResource("7_daumt")]
 position = Vector2(3470, -273)
@@ -337,6 +329,7 @@ shadow_filter_smooth = 1.5
 shadow_item_cull_mask = 3
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1043188166]
+visible = false
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Node2D" unique_id=690322760]
 color = Color(0.8083423, 0.8223162, 0.9357957, 1)
@@ -351,7 +344,6 @@ shadow_filter_smooth = 1.5
 
 [node name="Teleport" type="Area2D" parent="." unique_id=752041987]
 unique_name_in_owner = true
-visible = false
 position = Vector2(818, -273)
 collision_layer = 0
 collision_mask = 2
@@ -365,8 +357,11 @@ texture = SubResource("GradientTexture2D_340gp")
 shape = SubResource("CircleShape2D_vbsbg")
 disabled = true
 
-[node name="HUD" parent="." unique_id=1483658589 node_paths=PackedStringArray("Player") instance=ExtResource("20_340gp")]
-Player = NodePath("../Player")
+[node name="SceneTransitionCaller" parent="." unique_id=1645116925 instance=ExtResource("21_uha3m")]
+nextScene = "res://Scenes/Levels/level_stage_1.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneTransitionCaller" unique_id=1843772066]
+position = Vector2(1052, 152)
+shape = SubResource("RectangleShape2D_vbsbg")
 
 [connection signal="area_entered" from="Teleport" to="." method="_on_teleport_area_entered"]
-[connection signal="win" from="HUD" to="." method="_on_hud_win"]

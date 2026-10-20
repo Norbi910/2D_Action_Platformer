@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="UpgradeResource" format=3 uid="uid://c20bixnq8d02q"]
+
+[ext_resource type="Script" uid="uid://dbywqrgik5j7i" path="res://Scripts/UI/UpgradeResource.gd" id="1_dkvpn"]
+
+[resource]
+script = ExtResource("1_dkvpn")
+upgradeName = "Double Jump"
+description = "Jump Jump"
+abilty = 1
+rarity = 5
+metadata/_custom_type_script = "uid://dbywqrgik5j7i"

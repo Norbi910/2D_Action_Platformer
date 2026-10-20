@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://b5ns3u04dt05o" path="res://Scenes/Entities/ant.tscn" id="6_yusk2"]
 [ext_resource type="PackedScene" uid="uid://c0xujnhdedwic" path="res://Scenes/Entities/boss.tscn" id="7_ppcrt"]
 [ext_resource type="TileSet" uid="uid://d1nsd18c77krq" path="res://Resources/MainTileSet.tres" id="7_qour5"]
-[ext_resource type="PackedScene" uid="uid://x63lcjbcaif2" path="res://Scenes/UI/hud.tscn" id="8_qour5"]
 [ext_resource type="Script" uid="uid://djlgois0kuta2" path="res://Scripts/Boss/attack.gd" id="8_rsowa"]
 [ext_resource type="Resource" uid="uid://dcp6thd2q0crk" path="res://Resources/Boss/uproot.tres" id="9_widy8"]
 [ext_resource type="Resource" uid="uid://gcq220mgqsed" path="res://Resources/Boss/slam_Attack.tres" id="10_j5eix"]
@@ -147,6 +146,7 @@ shadow_filter_smooth = 1.5
 shadow_item_cull_mask = 3
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1733182325]
+visible = false
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Node2D" unique_id=1624733077]
 color = Color(0.8083423, 0.8223162, 0.9357957, 1)
@@ -158,6 +158,3 @@ range_item_cull_mask = 3
 shadow_enabled = true
 shadow_filter = 1
 shadow_filter_smooth = 1.5
-
-[node name="HUD" parent="." unique_id=1483658589 node_paths=PackedStringArray("Player") instance=ExtResource("8_qour5")]
-Player = NodePath("../Player")
