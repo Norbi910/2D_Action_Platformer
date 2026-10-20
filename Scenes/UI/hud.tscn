@@ -34,7 +34,6 @@ theme_override_constants/separation = 6
 
 [node name="HBox" type="HBoxContainer" parent="MainControl/VBoxContainer" unique_id=923710431]
 layout_mode = 2
-size_flags_horizontal = 0
 size_flags_vertical = 0
 
 [node name="Control" type="Control" parent="MainControl/VBoxContainer/HBox" unique_id=963567570]
@@ -51,8 +50,42 @@ text = "HP:"
 
 [node name="HPBar" parent="MainControl/VBoxContainer/HBox" unique_id=383536878 instance=ExtResource("3_bjfho")]
 unique_name_in_owner = true
+z_index = 0
 layout_mode = 2
+size_flags_horizontal = 1
 size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainControl/VBoxContainer/HBox" unique_id=1291851401]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="TimerLabel" type="Label" parent="MainControl/VBoxContainer/HBox/HBoxContainer" unique_id=1063695794]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 8
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_fccik")
+text = "00:00:00."
+
+[node name="MsecTimerLabel" type="Label" parent="MainControl/VBoxContainer/HBox/HBoxContainer" unique_id=1092386550]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 8
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -2)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_fccik")
+theme_override_font_sizes/font_size = 8
+text = "000"
+
+[node name="Control2" type="Control" parent="MainControl/VBoxContainer/HBox" unique_id=1626721917]
+layout_mode = 2
 
 [node name="DebugButtons" type="VBoxContainer" parent="MainControl/VBoxContainer" unique_id=1162875283]
 unique_name_in_owner = true

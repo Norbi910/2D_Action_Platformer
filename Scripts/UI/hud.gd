@@ -8,12 +8,25 @@ var player: Player
 @onready var upgrades_ui: UpgradesUI = %UpgradesUI
 @onready var end_screen: MarginContainer = %EndScreen
 @onready var debug_buttons: VBoxContainer = %DebugButtons
+@onready var timer_label: Label = %TimerLabel
+@onready var msec_timer_label: Label = %MsecTimerLabel
 
+var timeSinceStart: float = 3590
 
 func _ready() -> void:
 	SceneTransition.win.connect(_win)
 	SceneTransition.game_over.connect(_game_over)
 	SceneTransition.newScene.connect(rollUpgrades)
+
+func _process(delta: float) -> void:
+	timeSinceStart += delta
+	var mSecsSinceStart: int = (timeSinceStart / 0.001)
+	var hours = mSecsSinceStart / 3600000 
+	var mins = mSecsSinceStart / 60000 % 60
+	var secs = mSecsSinceStart / 1000 % 60
+	var text = "%01d:%02d:%02d." % [hours, mins, secs]
+	timer_label.text =text
+	msec_timer_label.text = "%02d" % (mSecsSinceStart % 100)
 
 func _win():
 	end_screen.visible = true

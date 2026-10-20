@@ -5,7 +5,6 @@
 [sub_resource type="Theme" id="Theme_340gp"]
 
 [node name="HPBar" type="MarginContainer" unique_id=1008505159]
-z_index = 5
 anchors_preset = -1
 anchor_right = 0.20833333
 anchor_bottom = 0.055555556
