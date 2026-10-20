@@ -50,7 +50,6 @@ text = "HP:"
 
 [node name="HPBar" parent="MainControl/VBoxContainer/HBox" unique_id=383536878 instance=ExtResource("3_bjfho")]
 unique_name_in_owner = true
-z_index = 0
 layout_mode = 2
 size_flags_horizontal = 1
 size_flags_vertical = 4

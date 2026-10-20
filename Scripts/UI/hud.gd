@@ -11,7 +11,7 @@ var player: Player
 @onready var timer_label: Label = %TimerLabel
 @onready var msec_timer_label: Label = %MsecTimerLabel
 
-var timeSinceStart: float = 3590
+var timeSinceStart: float = 0
 
 func _ready() -> void:
 	SceneTransition.win.connect(_win)
@@ -25,7 +25,7 @@ func _process(delta: float) -> void:
 	var mins = mSecsSinceStart / 60000 % 60
 	var secs = mSecsSinceStart / 1000 % 60
 	var text = "%01d:%02d:%02d." % [hours, mins, secs]
-	timer_label.text =text
+	timer_label.text = text
 	msec_timer_label.text = "%02d" % (mSecsSinceStart % 100)
 
 func _win():
@@ -35,11 +35,14 @@ func _win():
 func _game_over():
 	end_screen.visible = true
 	death_label.visible = true
+	
 func _reset():
 	win_label.visible = false
 	death_label.visible = false
 	end_screen.visible = false
+	resetTimer()
 	SceneTransition.reset_game()
+	
 	
 func connectPlayer(player: Player):
 	self.player = player
@@ -58,6 +61,8 @@ func _on_upgrades_ui_chosen(upgrade: UpgradeResource) -> void:
 	upgrades_ui.visible = false
 	Engine.time_scale = 1
 
+func resetTimer(): 
+	timeSinceStart = 0
 
 func _on_button_pressed() -> void:
 	rollUpgrades()
