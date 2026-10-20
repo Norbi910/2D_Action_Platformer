@@ -18,7 +18,7 @@ func _process(_delta: float) -> void:
 	sprite.material.set_shader_parameter("enabled", flash_enabled)
 	sprite.material.set_shader_parameter("color_parameter", flash_color)
 
-func flash(_dmg: float):
+func flash(_dmg: float,):
 	flash_enabled = true
 	flash_timer.start()
 

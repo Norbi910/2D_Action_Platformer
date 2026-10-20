@@ -2,7 +2,7 @@ class_name NPC
 extends CharacterBody2D
 
 @onready var text_box: Label = $TextBox
-const PLAYER_DATA = preload("uid://bvyijoa5sha6v")
+# const PLAYER_DATA = preload("uid://bvyijoa5sha6v")
 enum QuestState {NONE, ACCEPTED, COMPLETED}
 @export var current_state: QuestState = QuestState.NONE
 
@@ -12,10 +12,11 @@ func _ready() -> void:
 	text_box.visible = false
 
 func interact():	
-	if PLAYER_DATA.hasItem("star"):
-		current_state = QuestState.COMPLETED
-		PLAYER_DATA.completed_quests.append("bunny_star")
-		PLAYER_DATA.removeItem("star")
+	pass
+	#if PLAYER_DATA.hasItem("star"):
+	#	current_state = QuestState.COMPLETED
+	#	PLAYER_DATA.completed_quests.append("bunny_star")
+	#	PLAYER_DATA.removeItem("star")
 	if text_box.visible:
 		talk()
 	updateDialogue()

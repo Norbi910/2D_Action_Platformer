@@ -34,6 +34,6 @@ func _on_h_slider_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(0, value)
 	AudioServer.set_bus_mute(0, (value == %VolumeSlider.min_value))
 
-signal hints_toggle(state: bool)
+signal debugMode(state: bool)
 func _on_hint_button_pressed() -> void:
-	hints_toggle.emit(%HintButton.button_pressed)
+	debugMode.emit(%DebugButton.button_pressed)

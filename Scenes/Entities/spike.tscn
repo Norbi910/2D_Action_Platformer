@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://cbdtek32apfnx"]
+
+[ext_resource type="Texture2D" uid="uid://cry5iehsqvyrr" path="res://Sprites/Tiles/props.png" id="1_mjhia"]
+[ext_resource type="Script" uid="uid://dpscdosrp5f1j" path="res://spike.gd" id="2_e4xg1"]
+[ext_resource type="Script" uid="uid://cih88vv0ljwib" path="res://Scripts/Components/attack_component.gd" id="3_gjoqu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gx0ja"]
+size = Vector2(32, 9)
+
+[node name="Spike" type="Node2D" unique_id=647630091]
+modulate = Color(2.1658838e-07, 0.5452055, 0.0050262944, 1)
+script = ExtResource("2_e4xg1")
+
+[node name="Timer" type="Timer" parent="." unique_id=1637193787]
+
+[node name="SpikeBody" type="Node2D" parent="." unique_id=128746636]
+unique_name_in_owner = true
+
+[node name="AttackComponent" type="Area2D" parent="SpikeBody" unique_id=788479190]
+unique_name_in_owner = true
+position = Vector2(8, 0)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_gjoqu")
+metadata/_custom_type_script = "uid://cih88vv0ljwib"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpikeBody/AttackComponent" unique_id=1486209118]
+position = Vector2(-8, 0.5)
+shape = SubResource("RectangleShape2D_gx0ja")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="SpikeBody" unique_id=1434846068]
+position = Vector2(8, 0)
+texture = ExtResource("1_mjhia")
+region_enabled = true
+region_rect = Rect2(144, 198, 16, 10)
+
+[node name="Sprite2D2" type="Sprite2D" parent="SpikeBody" unique_id=383843450]
+position = Vector2(-8, 0)
+texture = ExtResource("1_mjhia")
+region_enabled = true
+region_rect = Rect2(144, 198, 16, 10)

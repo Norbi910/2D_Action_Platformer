@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://chpxkw26mvq3k"]
+[gd_scene format=3 uid="uid://chpxkw26mvq3k"]
 
 [ext_resource type="Script" uid="uid://bscemwjnnb2is" path="res://Scripts/Entities/player.gd" id="1_vgqql"]
 [ext_resource type="Texture2D" uid="uid://ctr48nrwrqb7d" path="res://Sprites/Characters/Player/idle.png" id="2_fkybt"]
@@ -158,6 +158,71 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [SubResource("CapsuleShape2D_f1ek2"), SubResource("CapsuleShape2D_f1ek2")]
+}
+
+[sub_resource type="Animation" id="Animation_f5ba2"]
+resource_name = "death"
+length = 0.60001004
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/PlayerSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_14y0q")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/PlayerSprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot/PlayerSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Pivot/PlayerSprite:vframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Pivot/PlayerSprite:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.60001004),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_ukyrk"]
@@ -382,71 +447,6 @@ tracks/2/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6]
 }
 
-[sub_resource type="Animation" id="Animation_f5ba2"]
-resource_name = "death"
-length = 0.60001004
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot/PlayerSprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("6_14y0q")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Pivot/PlayerSprite:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [6]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Pivot/PlayerSprite:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Pivot/PlayerSprite:vframes")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Pivot/PlayerSprite:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0.60001004),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h4iuc"]
 _data = {
 &"RESET": SubResource("Animation_tx1dd"),
@@ -486,107 +486,137 @@ func _process(delta: float) -> void:
 [sub_resource type="CircleShape2D" id="CircleShape2D_8erm5"]
 radius = 22.0
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="Gradient" id="Gradient_14y0q"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_f5ba2"]
+gradient = SubResource("Gradient_14y0q")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.83760685, 0.7991453)
+
+[node name="Player" type="CharacterBody2D" unique_id=307831011]
 collision_layer = 0
 floor_constant_speed = true
 script = ExtResource("1_vgqql")
 
-[node name="PlayerCollision" type="CollisionShape2D" parent="."]
+[node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=1846072109]
 visible = false
 position = Vector2(0, 12)
 shape = SubResource("CapsuleShape2D_fkybt")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1212981858]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_h4iuc")
-}
-autoplay = "idle"
+libraries/ = SubResource("AnimationLibrary_h4iuc")
+autoplay = &"idle"
 
-[node name="Timers" type="Node" parent="."]
+[node name="Timers" type="Node" parent="." unique_id=1152605578]
 
-[node name="CoyoteTimer" type="Timer" parent="Timers"]
+[node name="CoyoteTimer" type="Timer" parent="Timers" unique_id=1144242682]
 unique_name_in_owner = true
 wait_time = 0.1
 one_shot = true
 
-[node name="JumpBufferTimer" type="Timer" parent="Timers"]
+[node name="JumpBufferTimer" type="Timer" parent="Timers" unique_id=216755552]
 unique_name_in_owner = true
 wait_time = 0.2
 one_shot = true
 
-[node name="FloatCooldownTimer" type="Timer" parent="Timers"]
+[node name="FloatCooldownTimer" type="Timer" parent="Timers" unique_id=398570160]
 unique_name_in_owner = true
 one_shot = true
 
-[node name="AttackCooldownTimer" type="Timer" parent="Timers"]
+[node name="AttackCooldownTimer" type="Timer" parent="Timers" unique_id=1228778126]
 unique_name_in_owner = true
 wait_time = 0.5
 one_shot = true
 
-[node name="RespawnTimer" type="Timer" parent="Timers"]
+[node name="RespawnTimer" type="Timer" parent="Timers" unique_id=1251889452]
 unique_name_in_owner = true
+one_shot = true
 
-[node name="HitSlowTimer" type="Timer" parent="Timers"]
+[node name="HitSlowTimer" type="Timer" parent="Timers" unique_id=883958376]
 unique_name_in_owner = true
 wait_time = 0.05
+one_shot = true
 
-[node name="HealthComponent" parent="." instance=ExtResource("6_8erm5")]
+[node name="DashTimer" type="Timer" parent="Timers" unique_id=1151584450]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="DashCooldownTimer" type="Timer" parent="Timers" unique_id=1225568069]
+unique_name_in_owner = true
+wait_time = 2.0
+one_shot = true
+
+[node name="HealthComponent" parent="." unique_id=68109700 instance=ExtResource("6_8erm5")]
 unique_name_in_owner = true
 visible = false
 position = Vector2(0, -15)
 MAX_HEALTH = 100.0
 
-[node name="HitFlashComponent" parent="." node_paths=PackedStringArray("sprite", "healthComponent") instance=ExtResource("7_85s6f")]
+[node name="HitFlashComponent" parent="." unique_id=1897148146 node_paths=PackedStringArray("sprite", "healthComponent") instance=ExtResource("7_85s6f")]
 sprite = NodePath("../Pivot/PlayerSprite")
 healthComponent = NodePath("../HealthComponent")
 
-[node name="Pivot" type="Node2D" parent="."]
+[node name="Pivot" type="Node2D" parent="." unique_id=1191439490]
 unique_name_in_owner = true
 
-[node name="PlayerSprite" type="Sprite2D" parent="Pivot"]
+[node name="PlayerSprite" type="Sprite2D" parent="Pivot" unique_id=49295854]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_14y0q")
 position = Vector2(-1, 0)
 texture = ExtResource("2_fkybt")
 hframes = 4
 
-[node name="AttackComponent" parent="Pivot" instance=ExtResource("8_tx1dd")]
+[node name="AttackComponent" parent="Pivot" unique_id=1489064506 instance=ExtResource("8_tx1dd")]
+unique_name_in_owner = true
 collision_layer = 0
 collision_mask = 8
 
-[node name="AttackCollision" type="CollisionShape2D" parent="Pivot/AttackComponent"]
+[node name="AttackCollision" type="CollisionShape2D" parent="Pivot/AttackComponent" unique_id=1724455143]
 position = Vector2(37, 4)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_f1ek2")
 disabled = true
 debug_color = Color(0.9113462, 0.21197182, 0.52477556, 0.41960785)
 
-[node name="HitBoxComponent" parent="Pivot" node_paths=PackedStringArray("health_component", "hit_flash") instance=ExtResource("7_f1ek2")]
+[node name="HitBoxComponent" parent="Pivot" unique_id=352873461 node_paths=PackedStringArray("health_component", "hit_flash") instance=ExtResource("7_f1ek2")]
+unique_name_in_owner = true
 collision_layer = 2
 collision_mask = 0
 health_component = NodePath("../../HealthComponent")
-invincibility_time = 1.0
+invincibility_time = 0.6
 hit_flash = NodePath("../../HitFlashComponent")
 
-[node name="Hitbox" type="CollisionShape2D" parent="Pivot/HitBoxComponent"]
+[node name="Hitbox" type="CollisionShape2D" parent="Pivot/HitBoxComponent" unique_id=783719210]
 position = Vector2(0, 12)
 shape = SubResource("CapsuleShape2D_8erm5")
 debug_color = Color(0.32774568, 0.62004066, 0.20378724, 0.41960785)
 
-[node name="InteractionArea" type="Area2D" parent="Pivot"]
+[node name="InteractionArea" type="Area2D" parent="Pivot" unique_id=298583049]
 collision_layer = 0
 collision_mask = 20
 script = SubResource("GDScript_8erm5")
 
-[node name="InteractionBox" type="CollisionShape2D" parent="Pivot/InteractionArea"]
+[node name="InteractionBox" type="CollisionShape2D" parent="Pivot/InteractionArea" unique_id=1794993882]
 visible = false
 position = Vector2(1, 11)
 shape = SubResource("CircleShape2D_8erm5")
 
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=508734414]
+visible = false
+position = Vector2(0, 7.0000005)
+scale = Vector2(1.315, 1.315)
+color = Color(0.94030315, 0.66111696, 0.28996044, 1)
+energy = 0.7
+range_z_min = 0
+texture = SubResource("GradientTexture2D_f5ba2")
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="Timers/RespawnTimer" to="." method="_on_respawn_timer_timeout"]
 [connection signal="timeout" from="Timers/HitSlowTimer" to="." method="_on_hit_slow_timer_timeout"]
+[connection signal="timeout" from="Timers/DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="hp_changed" from="HealthComponent" to="." method="_on_hp_changed"]
 [connection signal="damage_dealt" from="Pivot/AttackComponent" to="." method="_on_attack_component_damage_dealt"]
 [connection signal="on_knockback" from="Pivot/HitBoxComponent" to="." method="_on_hit_box_knockback"]

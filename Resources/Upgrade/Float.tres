@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="UpgradeResource" format=3 uid="uid://dkvqspejkma85"]
+
+[ext_resource type="Script" uid="uid://dbywqrgik5j7i" path="res://Scripts/UI/UpgradeResource.gd" id="1_fdxqd"]
+
+[resource]
+script = ExtResource("1_fdxqd")
+upgradeName = "Float"
+description = "Supercalifragilisticexpialidocious"
+abilty = 0
+metadata/_custom_type_script = "uid://dbywqrgik5j7i"

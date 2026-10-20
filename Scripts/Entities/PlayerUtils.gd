@@ -1,0 +1,18 @@
+class_name PlayerUtils
+extends Node
+
+enum UPGRADE_TYPES {
+	ATK_DMG,
+	HP,
+	SPEED,
+	JUMP_HEIGHT,
+	INV_TIME,
+	NONE
+}
+enum ABILITIES {
+	HOVER,
+	DOUBLE_JUMP,
+	PROJECTILE,
+	DASH,
+	NONE
+}

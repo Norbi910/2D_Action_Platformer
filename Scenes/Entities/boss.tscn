@@ -1,0 +1,369 @@
+[gd_scene format=3 uid="uid://c0xujnhdedwic"]
+
+[ext_resource type="Script" uid="uid://y1mnlqiwkhba" path="res://Scripts/Boss/boss.gd" id="1_88chn"]
+[ext_resource type="Texture2D" uid="uid://bn6pyoxf2gdl6" path="res://Sprites/Boss/boss.png" id="2_e30ix"]
+[ext_resource type="PackedScene" uid="uid://bml8o3fl7yfw0" path="res://Scenes/Components/health_component.tscn" id="2_mci1o"]
+[ext_resource type="PackedScene" uid="uid://mca7y2rl04ft" path="res://Scenes/Components/hit_box_component.tscn" id="3_gbfcn"]
+[ext_resource type="PackedScene" uid="uid://cdnmaw550r223" path="res://Scenes/UI/hp_bar.tscn" id="4_gbfcn"]
+[ext_resource type="Texture2D" uid="uid://coagglfkuhbns" path="res://Sprites/Boss/611927-walter-hammer-set-4-tlg-09.webp" id="6_e30ix"]
+[ext_resource type="Script" uid="uid://cih88vv0ljwib" path="res://Scripts/Components/attack_component.gd" id="9_06ur4"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u6nay"]
+radius = 23.0
+height = 78.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8qf24"]
+radius = 25.0
+height = 88.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_06ur4"]
+radius = 17.0
+height = 62.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_06ur4"]
+size = Vector2(50, 50)
+
+[sub_resource type="Animation" id="Animation_e30ix"]
+length = 0.001
+step = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite2D2:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_vci0c"]
+resource_name = "idle"
+length = 0.5000125
+loop_mode = 1
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite2D2:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b7m6a"]
+_data = {
+&"RESET": SubResource("Animation_e30ix"),
+&"idle": SubResource("Animation_vci0c")
+}
+
+[sub_resource type="Animation" id="Animation_yxkga"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SlamAttackComponent:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(21, -88)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SlamAttackComponent:rotation")
+tracks/1/interp = 3
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SlamAttackComponent/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SlamAttackComponent:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BiteAttack/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BiteAttack:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("%Pivot/../Label:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_mawnr"]
+resource_name = "bite"
+length = 1.5000125
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BiteAttack/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BiteAttack:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%Pivot/../Label:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_4u8fg"]
+resource_name = "slam"
+length = 0.75
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SlamAttackComponent:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.375, 0.6182734),
+"transitions": PackedFloat32Array(0.5, 2, 1.0000019),
+"update": 0,
+"values": [Vector2(21, -88), Vector2(-63, -66), Vector2(-96.00001, 15.000002)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SlamAttackComponent:rotation")
+tracks/1/interp = 3
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.375, 0.6182734),
+"transitions": PackedFloat32Array(0.5, -0.5, 0),
+"update": 0,
+"values": [0.0, 5.377504, -1.816887751326097]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SlamAttackComponent/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.6250125),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SlamAttackComponent:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6250125),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mawnr"]
+_data = {
+&"RESET": SubResource("Animation_yxkga"),
+&"bite": SubResource("Animation_mawnr"),
+&"slam": SubResource("Animation_4u8fg")
+}
+
+[node name="Boss" type="CharacterBody2D" unique_id=573936638]
+collision_layer = 0
+script = ExtResource("1_88chn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=596447781]
+shape = SubResource("CapsuleShape2D_u6nay")
+
+[node name="HealthComponent" parent="." unique_id=2101488015 node_paths=PackedStringArray("hp_bar") instance=ExtResource("2_mci1o")]
+MAX_HEALTH = 200.0
+hp_bar = NodePath("../HPBar")
+
+[node name="HPBar" parent="." unique_id=1111443554 instance=ExtResource("4_gbfcn")]
+offset_top = -47.0
+offset_bottom = -47.0
+
+[node name="Pivot" type="Node2D" parent="." unique_id=1598850250]
+unique_name_in_owner = true
+position = Vector2(-0.39941406, -0.9342499)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Pivot" unique_id=705911258]
+unique_name_in_owner = true
+z_index = -1
+position = Vector2(0.39941406, 0.9342499)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("2_e30ix")
+hframes = 4
+
+[node name="HitBoxComponent" parent="Pivot" unique_id=947251289 node_paths=PackedStringArray("health_component") instance=ExtResource("3_gbfcn")]
+position = Vector2(0.39941406, 0.9342499)
+collision_layer = 8
+collision_mask = 0
+health_component = NodePath("../../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/HitBoxComponent" unique_id=546269523]
+shape = SubResource("CapsuleShape2D_8qf24")
+
+[node name="Attacks" type="Node2D" parent="Pivot" unique_id=1383734926]
+position = Vector2(0.39941406, 0.9342499)
+
+[node name="SlamAttackComponent" type="Area2D" parent="Pivot/Attacks" unique_id=1511749974]
+visible = false
+position = Vector2(21, -88)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("9_06ur4")
+metadata/_custom_type_script = "uid://cih88vv0ljwib"
+
+[node name="Sprite2D" type="Sprite2D" parent="Pivot/Attacks/SlamAttackComponent" unique_id=1547408921]
+rotation = 0.99094254
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("6_e30ix")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Attacks/SlamAttackComponent" unique_id=379431494]
+position = Vector2(7.000001, -9.000001)
+rotation = -1.367447
+shape = SubResource("CapsuleShape2D_06ur4")
+disabled = true
+debug_color = Color(0.92284477, 0.2545758, 0.29282868, 0.41960785)
+
+[node name="BiteAttack" type="Area2D" parent="Pivot/Attacks" unique_id=1923655082]
+visible = false
+position = Vector2(21, -88)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("9_06ur4")
+metadata/_custom_type_script = "uid://cih88vv0ljwib"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Attacks/BiteAttack" unique_id=1050842033]
+position = Vector2(-21, 22)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_06ur4")
+disabled = true
+debug_color = Color(0.92284477, 0.2545758, 0.29282868, 0.41960785)
+
+[node name="UnderGroundParticles" type="CPUParticles2D" parent="Pivot/Attacks" unique_id=723808305]
+unique_name_in_owner = true
+emitting = false
+amount = 66
+emission_shape = 3
+emission_rect_extents = Vector2(32, 60)
+gravity = Vector2(0, -100)
+scale_amount_max = 5.6
+color = Color(0.39880452, 0.1877853, 0.088904895, 1)
+
+[node name="PlayerSearchAbove" type="ShapeCast2D" parent="Pivot" unique_id=1621279152]
+unique_name_in_owner = true
+position = Vector2(0, -45.06575)
+shape = SubResource("RectangleShape2D_06ur4")
+target_position = Vector2(0, -42)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="Label" type="Label" parent="." unique_id=1983043909]
+visible = false
+offset_left = -30.0
+offset_top = -83.0
+offset_right = 30.0
+offset_bottom = -60.0
+text = "GAOOO"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=582301160]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_b7m6a")
+autoplay = &"idle"
+
+[node name="AttackCooldown" type="Timer" parent="." unique_id=790061243]
+unique_name_in_owner = true
+wait_time = 4.0
+one_shot = true
+
+[node name="AttackAnimationPlayer" type="AnimationPlayer" parent="." unique_id=243991693]
+unique_name_in_owner = true
+root_node = NodePath("../Pivot/Attacks")
+libraries/ = SubResource("AnimationLibrary_mawnr")
+
+[connection signal="animation_finished" from="AttackAnimationPlayer" to="." method="_on_attack_animation_player_animation_finished"]

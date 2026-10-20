@@ -1,24 +1,47 @@
-[gd_scene load_steps=6 format=3 uid="uid://x63lcjbcaif2"]
+[gd_scene format=3 uid="uid://x63lcjbcaif2"]
 
 [ext_resource type="Script" uid="uid://ffnyjusxg1j6" path="res://Scripts/UI/hud.gd" id="1_e0onf"]
-[ext_resource type="PackedScene" uid="uid://6pbne607b68l" path="res://Scenes/UI/inventory_UI.tscn" id="2_6fbih"]
 [ext_resource type="FontFile" uid="uid://c6lvcqnjf517l" path="res://Sprites/Fonts/MedodicaRegular.otf" id="2_fccik"]
 [ext_resource type="PackedScene" uid="uid://cdnmaw550r223" path="res://Scenes/UI/hp_bar.tscn" id="3_bjfho"]
+[ext_resource type="Theme" uid="uid://f2wfw56qjs0a" path="res://Resources/button.tres" id="5_mqf2c"]
+[ext_resource type="Script" uid="uid://dbywqrgik5j7i" path="res://Scripts/UI/UpgradeResource.gd" id="5_qdh5o"]
+[ext_resource type="PackedScene" uid="uid://cic46lvx1hedc" path="res://Scenes/UI/Upgrade.tscn" id="5_ux5h0"]
 [ext_resource type="PackedScene" uid="uid://6oay2ktv6ylx" path="res://Scenes/UI/pause_menu.tscn" id="5_vsu76"]
+[ext_resource type="Resource" uid="uid://d3auqcb1mn4j0" path="res://Resources/Upgrade/HP_UP.tres" id="6_cna6x"]
+[ext_resource type="Resource" uid="uid://dypmvrgv6u2th" path="res://Resources/Upgrade/DMG_UP.tres" id="7_am52h"]
+[ext_resource type="Resource" uid="uid://cmfuabdanrbgg" path="res://Resources/Upgrade/Speed_UP.tres" id="8_yttkt"]
+[ext_resource type="Resource" uid="uid://bm8kjmue2u6gc" path="res://Resources/Upgrade/Jump_UP.tres" id="9_k24i8"]
+[ext_resource type="Resource" uid="uid://c0nfsgfsib0p7" path="res://Resources/Upgrade/Invin_UP.tres" id="10_qt3ij"]
+[ext_resource type="Resource" uid="uid://cldl5e57d7uho" path="res://Resources/Upgrade/Dash.tres" id="11_uidm2"]
+[ext_resource type="Resource" uid="uid://dkvqspejkma85" path="res://Resources/Upgrade/Float.tres" id="12_8c63k"]
+[ext_resource type="Resource" uid="uid://c20bixnq8d02q" path="res://Resources/Upgrade/DoubleJump.tres" id="13_qff6j"]
+[ext_resource type="Resource" uid="uid://dkrx53g24yyx5" path="res://Resources/Upgrade/Projectile.tres" id="14_e17ao"]
 
-[node name="HUD" type="CanvasLayer"]
+[node name="HUD" type="CanvasLayer" unique_id=1483658589]
 script = ExtResource("1_e0onf")
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="MainControl" type="MarginContainer" parent="." unique_id=2012272541]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="Control"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="VBoxContainer" type="VBoxContainer" parent="MainControl" unique_id=617353965]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="HBox" type="HBoxContainer" parent="MainControl/VBoxContainer" unique_id=923710431]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Control" type="Control" parent="MainControl/VBoxContainer/HBox" unique_id=963567570]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainControl/VBoxContainer/HBox" unique_id=1399812325]
+layout_mode = 2
 theme_override_colors/font_color = Color(0.79607844, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.63529414)
 theme_override_constants/outline_size = 2
@@ -26,38 +49,58 @@ theme_override_fonts/font = ExtResource("2_fccik")
 theme_override_font_sizes/font_size = 32
 text = "HP:"
 
-[node name="HPBar" parent="Control" instance=ExtResource("3_bjfho")]
-layout_mode = 1
-offset_left = 103.0
-offset_top = 13.0
-offset_right = 103.0
-offset_bottom = 13.0
-scale = Vector2(4.745744, 5.7073193)
+[node name="HPBar" parent="MainControl/VBoxContainer/HBox" unique_id=383536878 instance=ExtResource("3_bjfho")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
 
-[node name="InventoryUI" parent="." instance=ExtResource("2_6fbih")]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -95.0
-offset_top = 3.0
-offset_right = 9.0
-offset_bottom = 107.0
-grow_horizontal = 0
-scale = Vector2(0.8870647, 0.77960354)
-
-[node name="DeathLabel" type="Label" parent="."]
+[node name="DebugButtons" type="VBoxContainer" parent="MainControl/VBoxContainer" unique_id=1162875283]
+unique_name_in_owner = true
 visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -175.0
-offset_top = -50.0
-offset_right = 175.0
-offset_bottom = 50.000046
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
+
+[node name="UpgradeButton" type="Button" parent="MainControl/VBoxContainer/DebugButtons" unique_id=1383492885]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("5_mqf2c")
+text = "Upgrade"
+
+[node name="LoopButton" type="Button" parent="MainControl/VBoxContainer/DebugButtons" unique_id=1607672805]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("5_mqf2c")
+text = "Loop"
+
+[node name="UpgradesUI" parent="MainControl" unique_id=2135719142 instance=ExtResource("5_ux5h0")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+Upgrades = Array[ExtResource("5_qdh5o")]([ExtResource("6_cna6x"), ExtResource("7_am52h"), ExtResource("8_yttkt"), ExtResource("9_k24i8"), ExtResource("10_qt3ij"), ExtResource("11_uidm2"), ExtResource("12_8c63k"), ExtResource("13_qff6j"), ExtResource("14_e17ao")])
+
+[node name="EndScreen" type="MarginContainer" parent="MainControl" unique_id=1636809600]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="MainControl/EndScreen" unique_id=1114369695]
+layout_mode = 2
+color = Color(0, 0, 0, 0.32941177)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainControl/EndScreen" unique_id=392360600]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Control" type="Control" parent="MainControl/EndScreen/VBoxContainer" unique_id=908103932]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MainControl/EndScreen/VBoxContainer" unique_id=1504153408]
+layout_mode = 2
+
+[node name="DeathLabel" type="Label" parent="MainControl/EndScreen/VBoxContainer/MarginContainer" unique_id=1309962802]
+unique_name_in_owner = true
+visible = false
+z_index = 1
+layout_mode = 2
 theme_override_colors/font_color = Color(0.6901961, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.7019608)
 theme_override_constants/shadow_offset_x = 2
@@ -68,21 +111,12 @@ theme_override_fonts/font = ExtResource("2_fccik")
 theme_override_font_sizes/font_size = 100
 text = "YOU DIED!"
 horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
 
-[node name="WinLabel" type="Label" parent="."]
+[node name="WinLabel" type="Label" parent="MainControl/EndScreen/VBoxContainer/MarginContainer" unique_id=1292066534]
+unique_name_in_owner = true
 visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -175.0
-offset_top = -105.0
-offset_right = 175.0
-offset_bottom = -4.999954
-grow_horizontal = 2
-grow_vertical = 2
+z_index = 1
+layout_mode = 2
 theme_override_colors/font_color = Color(9.62615e-07, 0.8081867, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.7019608)
 theme_override_constants/shadow_offset_x = 2
@@ -93,9 +127,25 @@ theme_override_fonts/font = ExtResource("2_fccik")
 theme_override_font_sizes/font_size = 100
 text = "YOU WIN!"
 horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
 
-[node name="PauseMenu" parent="." instance=ExtResource("5_vsu76")]
+[node name="MarginContainer2" type="MarginContainer" parent="MainControl/EndScreen/VBoxContainer" unique_id=9315483]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_right = 100
+
+[node name="RestartButton" type="Button" parent="MainControl/EndScreen/VBoxContainer/MarginContainer2" unique_id=1056844484]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("5_mqf2c")
+text = "Restart"
+
+[node name="PauseMenu" parent="MainControl" unique_id=1276499994 instance=ExtResource("5_vsu76")]
 visible = false
+z_index = 2
+layout_mode = 2
 
-[connection signal="hints_toggle" from="PauseMenu" to="." method="_on_pause_menu_hints_toggle"]
+[connection signal="pressed" from="MainControl/VBoxContainer/DebugButtons/UpgradeButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MainControl/VBoxContainer/DebugButtons/LoopButton" to="." method="_on_loop_button_pressed"]
+[connection signal="chosen" from="MainControl/UpgradesUI" to="." method="_on_upgrades_ui_chosen"]
+[connection signal="pressed" from="MainControl/EndScreen/VBoxContainer/MarginContainer2/RestartButton" to="." method="_reset"]
+[connection signal="debugMode" from="MainControl/PauseMenu" to="." method="_on_pause_menu_debug_mode"]

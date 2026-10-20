@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://qh4krg2nlrhg"]
+[gd_scene format=3 uid="uid://qh4krg2nlrhg"]
 
-[ext_resource type="Script" uid="uid://dbu0rmf8p3xfl" path="res://camera.gd" id="1_w1pu4"]
+[ext_resource type="Script" uid="uid://dbu0rmf8p3xfl" path="res://Scripts/UI/camera.gd" id="1_w1pu4"]
 
 [node name="Camera" type="Camera2D"]
 zoom = Vector2(0.85, 0.85)

@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://bjsofc1xdvswi"]
+[gd_resource type="Resource" script_class="InventoryItem" format=3 uid="uid://bjsofc1xdvswi"]
 
-[ext_resource type="Script" uid="uid://bbk3r0lmoqc01" path="res://Scripts/inventory_item.gd" id="1_xohux"]
+[ext_resource type="Script" uid="uid://bbk3r0lmoqc01" path="res://Scripts/UI/inventory_item.gd" id="1_xohux"]
 [ext_resource type="Texture2D" uid="uid://bj6u8f8rrwvng" path="res://Sprites/InventoryItems/star_icon.png" id="2_fcxl0"]
 
 [resource]

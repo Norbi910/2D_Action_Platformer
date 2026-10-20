@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="UpgradeResource" format=3 uid="uid://dypmvrgv6u2th"]
+
+[ext_resource type="Script" uid="uid://dbywqrgik5j7i" path="res://Scripts/UI/UpgradeResource.gd" id="1_gjxp6"]
+
+[resource]
+script = ExtResource("1_gjxp6")
+upgradeName = "Damage Up"
+description = "More Damage YAY!!"
+statName = 0
+amount = 5.0
+metadata/_custom_type_script = "uid://dbywqrgik5j7i"
