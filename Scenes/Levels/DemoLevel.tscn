@@ -305,7 +305,7 @@ position = Vector2(3541, -219)
 drop_source = NodePath("../Enemies/BigAnt")
 
 [node name="Player" parent="." unique_id=1294005457 instance=ExtResource("5_c6ica")]
-position = Vector2(26, -153)
+position = Vector2(27, -122)
 
 [node name="Camera" parent="Player" unique_id=1266117759 instance=ExtResource("7_qjc0w")]
 position = Vector2(1, 2)

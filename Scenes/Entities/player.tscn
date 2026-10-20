@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://mca7y2rl04ft" path="res://Scenes/Components/hit_box_component.tscn" id="7_f1ek2"]
 [ext_resource type="Shader" uid="uid://dfbcw0y4ieh7m" path="res://Resources/Shaders/better_flash.gdshader" id="8_85s6f"]
 [ext_resource type="PackedScene" uid="uid://bb8nlyevsjr62" path="res://Scenes/Components/attack_component.tscn" id="8_tx1dd"]
+[ext_resource type="Texture2D" uid="uid://c1o0exhmcrp6q" path="res://Sprites/Characters/Player/Warrior_SheetnoEffect.png" id="10_f5ba2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fkybt"]
 radius = 9.0
@@ -32,7 +33,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/path = NodePath("Pivot/PlayerSprite:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
@@ -44,7 +45,7 @@ tracks/1/keys = {
 }
 tracks/2/type = "value"
 tracks/2/imported = false
-tracks/2/enabled = true
+tracks/2/enabled = false
 tracks/2/path = NodePath("Pivot/PlayerSprite:hframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
@@ -81,15 +82,15 @@ tracks/4/keys = {
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f1ek2"]
 radius = 20.0
-height = 54.0
+height = 48.0
 
 [sub_resource type="Animation" id="Animation_7dp3o"]
 resource_name = "attack"
-length = 0.30001
+length = 0.4
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath("Pivot/PlayerSprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -101,7 +102,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/path = NodePath("Pivot/PlayerSprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
@@ -118,10 +119,10 @@ tracks/2/path = NodePath("Pivot/PlayerSprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.06374327, 0.16474329, 0.21991718, 0.25955224),
+"times": PackedFloat32Array(0, 0.099999994, 0.20000002, 0.29999998, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4]
+"values": [18, 19, 20, 21, 22]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -130,14 +131,14 @@ tracks/3/path = NodePath("Pivot/AttackComponent/AttackCollision:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.064493224, 0.22406678),
+"times": PackedFloat32Array(0, 0.099999994, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, true]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
-tracks/4/enabled = true
+tracks/4/enabled = false
 tracks/4/path = NodePath("Pivot/AttackComponent/AttackCollision:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
@@ -149,7 +150,7 @@ tracks/4/keys = {
 }
 tracks/5/type = "value"
 tracks/5/imported = false
-tracks/5/enabled = true
+tracks/5/enabled = false
 tracks/5/path = NodePath("Pivot/AttackComponent/AttackCollision:shape")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
@@ -162,11 +163,10 @@ tracks/5/keys = {
 
 [sub_resource type="Animation" id="Animation_f5ba2"]
 resource_name = "death"
-length = 0.60001004
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath("Pivot/PlayerSprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -178,7 +178,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/path = NodePath("Pivot/PlayerSprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
@@ -195,14 +195,14 @@ tracks/2/path = NodePath("Pivot/PlayerSprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.90000004, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5]
+"values": [26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
-tracks/3/enabled = true
+tracks/3/enabled = false
 tracks/3/path = NodePath("Pivot/PlayerSprite:vframes")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
@@ -219,20 +219,20 @@ tracks/4/path = NodePath("Pivot/PlayerSprite:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.60001004),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
 "update": 1,
-"values": [false]
+"values": []
 }
 
 [sub_resource type="Animation" id="Animation_ukyrk"]
 resource_name = "fall"
-length = 0.20001
+length = 0.4
 loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath("Pivot/PlayerSprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -244,7 +244,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/path = NodePath("Pivot/PlayerSprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
@@ -261,20 +261,19 @@ tracks/2/path = NodePath("Pivot/PlayerSprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.10000001),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(-0.1, 0, 0.10000002),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [2, 3]
+"values": [45, 46, 48]
 }
 
 [sub_resource type="Animation" id="Animation_8erm5"]
 resource_name = "float"
-length = 0.10001
-loop_mode = 1
+length = 0.1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath("Pivot/PlayerSprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -286,7 +285,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/path = NodePath("Pivot/PlayerSprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
@@ -306,17 +305,17 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1]
+"values": [45]
 }
 
 [sub_resource type="Animation" id="Animation_f1ek2"]
 resource_name = "idle"
-length = 0.7500125
+length = 1.000008363135904
 loop_mode = 1
-step = 0.125
+step = 0.083333336
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath("Pivot/PlayerSprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -328,7 +327,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/path = NodePath("Pivot/PlayerSprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
@@ -345,10 +344,10 @@ tracks/2/path = NodePath("Pivot/PlayerSprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1875, 0.375, 0.5625),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.5, 0.6666667, 0.8333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3]
+"values": [0, 1, 2, 3, 4, 5]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -370,7 +369,7 @@ loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath("Pivot/PlayerSprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -382,7 +381,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/path = NodePath("Pivot/PlayerSprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
@@ -407,12 +406,12 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_gymyn"]
 resource_name = "run"
-length = 0.70001
+length = 0.8000100119210779
 loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath("Pivot/PlayerSprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -424,7 +423,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/path = NodePath("Pivot/PlayerSprite:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
@@ -441,10 +440,10 @@ tracks/2/path = NodePath("Pivot/PlayerSprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6]
+"values": [6, 7, 8, 9, 10, 11, 12, 13]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h4iuc"]
@@ -467,7 +466,7 @@ shader_parameter/enabled = false
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8erm5"]
 radius = 6.0
-height = 36.0
+height = 35.0
 
 [sub_resource type="GDScript" id="GDScript_8erm5"]
 script/source = "extends Area2D
@@ -496,13 +495,13 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.83760685, 0.7991453)
 
 [node name="Player" type="CharacterBody2D" unique_id=307831011]
+z_index = 1
 collision_layer = 0
 floor_constant_speed = true
 script = ExtResource("1_vgqql")
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=1846072109]
-visible = false
-position = Vector2(0, 12)
+position = Vector2(0, -21)
 shape = SubResource("CapsuleShape2D_fkybt")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1212981858]
@@ -556,26 +555,29 @@ position = Vector2(0, -15)
 MAX_HEALTH = 100.0
 
 [node name="HitFlashComponent" parent="." unique_id=1897148146 node_paths=PackedStringArray("sprite", "healthComponent") instance=ExtResource("7_85s6f")]
+position = Vector2(0, -33)
 sprite = NodePath("../Pivot/PlayerSprite")
 healthComponent = NodePath("../HealthComponent")
 
 [node name="Pivot" type="Node2D" parent="." unique_id=1191439490]
 unique_name_in_owner = true
+position = Vector2(0, -33)
 
 [node name="PlayerSprite" type="Sprite2D" parent="Pivot" unique_id=49295854]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_14y0q")
-position = Vector2(-1, 0)
-texture = ExtResource("2_fkybt")
-hframes = 4
+position = Vector2(8, 11)
+texture = ExtResource("10_f5ba2")
+hframes = 6
+vframes = 17
 
 [node name="AttackComponent" parent="Pivot" unique_id=1489064506 instance=ExtResource("8_tx1dd")]
 unique_name_in_owner = true
+position = Vector2(15, 12)
 collision_layer = 0
 collision_mask = 8
 
 [node name="AttackCollision" type="CollisionShape2D" parent="Pivot/AttackComponent" unique_id=1724455143]
-position = Vector2(37, 4)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_f1ek2")
 disabled = true
@@ -583,6 +585,7 @@ debug_color = Color(0.9113462, 0.21197182, 0.52477556, 0.41960785)
 
 [node name="HitBoxComponent" parent="Pivot" unique_id=352873461 node_paths=PackedStringArray("health_component", "hit_flash") instance=ExtResource("7_f1ek2")]
 unique_name_in_owner = true
+position = Vector2(0, 15)
 collision_layer = 2
 collision_mask = 0
 health_component = NodePath("../../HealthComponent")
@@ -590,7 +593,6 @@ invincibility_time = 0.6
 hit_flash = NodePath("../../HitFlashComponent")
 
 [node name="Hitbox" type="CollisionShape2D" parent="Pivot/HitBoxComponent" unique_id=783719210]
-position = Vector2(0, 12)
 shape = SubResource("CapsuleShape2D_8erm5")
 debug_color = Color(0.32774568, 0.62004066, 0.20378724, 0.41960785)
 
