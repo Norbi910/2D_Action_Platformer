@@ -6,7 +6,6 @@ extends Node2D
 @onready var attack_component: AttackComponent = %AttackComponent
 @onready var collision_shape_2d: CollisionShape2D = %AttackComponent/CollisionShape2D
 @onready var spike_body: Node2D = %SpikeBody
-@onready var timer: Timer = $Timer
 
 var warn_move_amount:float = -5
 var move_amount: float = -10
@@ -15,6 +14,7 @@ func _ready() -> void:
 	attack_component.ATTACK_DAMAGE = damage
 	
 var enabled:bool
+signal down
 func attack(duration: float):
 	if enabled: return
 	enabled = true
@@ -43,3 +43,25 @@ func attack(duration: float):
 	tween.tween_property(spike_body, "global_position", start_pos, duration/16)
 	await tween.finished
 	enabled = false
+	down.emit()
+	
+func enable(): 
+	if enabled:
+		await down
+	enabled = true
+	
+	var start_pos = global_position
+	var warn_target_pos = start_pos
+	warn_target_pos.y += warn_move_amount
+	var target_pos = start_pos
+	target_pos.y += move_amount
+	
+	var tween = create_tween() 
+	tween.tween_property(spike_body, "global_position", warn_target_pos, 1)
+	await tween.finished
+	await get_tree().create_timer(5).timeout
+	
+	tween = create_tween()
+	tween.tween_property(spike_body, "global_position", target_pos, 0.125)
+	collision_shape_2d.set_deferred("disabled", false)
+	

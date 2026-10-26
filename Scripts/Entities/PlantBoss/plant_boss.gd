@@ -37,6 +37,11 @@ var tentacleDistance: Dictionary # keyed by side
 @onready var P3LeftTentacleAttack_enable: Area2D = $Phase3/LeftTentacle/AttackEnable
 @onready var P3LeftTentacleCollision_shape_2d_leaf: CollisionShape2D = $Phase3/LeftTentacle/AttackEnable/CollisionShape2DLeaf
 
+#Phase 4
+@export_group("Phase 4", "phase4")
+
+@onready var phase4Sprite: Sprite2D = $Phase4/Sprite2D
+
 
 @onready var attack_cooldown: Timer = %AttackCooldown
 @onready var move_timer: Timer = %MoveTimer
@@ -53,6 +58,8 @@ var moveBoundaries: Array[float]
 
 signal thornAttack(duration:float, fill_rate: float)
 signal targetedThornAttack(duration:float, center: Vector2, radius:float)
+signal allThorn
+signal dead
 enum Side {LEFT, RIGHT}
 
 func _ready() -> void:
@@ -75,7 +82,7 @@ func _ready() -> void:
 	if phase != 1: switchPhase(1, phase)
 
 
-func _process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	
 	match phase:
 		1: 
@@ -88,7 +95,6 @@ func _process(_delta: float) -> void:
 			teleportRandomly(phase2_MoveCooldown, phase2_MoveRadius)
 			tryToAttack(phase2_AttackCooldown, "Phase2/SlamAttack")
 		3:
-			
 			if move_timer.is_stopped(): 
 				var side: Side = Side.values().pick_random()
 				var movedSide = teleportNearPlayer(phase3_MoveCooldown, tentacleDistance.get(side), side)
@@ -106,8 +112,14 @@ func _process(_delta: float) -> void:
 					targetedThornAttack.emit(2, Vector2(P3RightTentacleCollision_shape_2d_leaf.global_position.x, global_position.y), 70)
 					return
 				#tryToAttack(phase3_AttackCooldown, "Phase3/Slam"+Side.keys()[side].capitalize())
-			
-		
+				
+		4:
+			var turnRotation = phase4Sprite.global_position.angle_to_point(player.global_position) + PI/2
+			print(turnRotation)
+			phase4Sprite.global_rotation = rotate_toward(phase4Sprite.global_rotation, turnRotation , 0.07)
+			var direction = (player.global_position - global_position).normalized()
+			velocity = velocity.move_toward(direction * 70, 5) 
+			move_and_slide()
 	
 func tryToAttack(attackCD: float, attackname: StringName):
 	if !attack_cooldown.is_stopped(): return
@@ -153,6 +165,12 @@ func _on_hp_changed(hp: float) -> void:
 		2 when healthPercentage < 0.25:
 			phase = 3
 			switchPhase(2, 3)
+		3 when healthPercentage < 0.1:
+			phase = 4
+			switchPhase(3, 4)
+		4 when healthPercentage <= 0:
+			dead.emit()
+			queue_free()
 
 func switchPhase(from: int, to: int):
 	var fromNode: Node2D = phaseNodes.get(from)
@@ -161,4 +179,15 @@ func switchPhase(from: int, to: int):
 	toNode.visible = true
 	toNode.process_mode = Node.PROCESS_MODE_INHERIT
 	fromNode.process_mode = Node.PROCESS_MODE_DISABLED
+	
+	match to: 
+		2:
+			pass
+		3:
+			pass
+		4: 
+			health_component.heal(health_component.MAX_HEALTH)
+			allThorn.emit()
+			$CollisionShape2D.disabled = true
+			global_position.y -= 300
 	

@@ -92,9 +92,6 @@ position = Vector2(-169, -63)
 [node name="BigAnt" parent="Enemies" unique_id=222060922 instance=ExtResource("6_yusk2")]
 position = Vector2(3100, -186)
 scale = Vector2(2, 2)
-speed = 80.0
-max_hp = 100.0
-damage = 40.0
 
 [node name="Crow" parent="Enemies" unique_id=978249869 instance=ExtResource("6_xy3it")]
 position = Vector2(131, -13)

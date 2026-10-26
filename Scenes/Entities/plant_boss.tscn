@@ -69,8 +69,8 @@ radius = 50.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_deinn"]
 radius = 60.00833
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_oj5hy"]
-load_path = "res://.godot/imported/icon.svg-b67cfb692a937e61d2bda8561d9e8db7.ctex"
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6urjk"]
+load_path = "res://.godot/imported/PlantBoss.png-daca90770e341fc8608a964f3fc85623.ctex"
 
 [sub_resource type="Animation" id="Animation_d3c8g"]
 length = 0.001
@@ -623,11 +623,34 @@ unique_name_in_owner = true
 process_mode = 4
 visible = false
 
-[node name="Sprite2D4" type="Sprite2D" parent="Phase4" unique_id=717801087]
-modulate = Color(0.103743516, 0.10374353, 0.103743516, 1)
-position = Vector2(-0.15638924, -29.156387)
-scale = Vector2(0.43505642, 0.43505642)
-texture = SubResource("CompressedTexture2D_oj5hy")
+[node name="Sprite2D" type="Sprite2D" parent="Phase4" unique_id=1584896689]
+material = SubResource("ShaderMaterial_6urjk")
+position = Vector2(0, -28)
+texture = SubResource("CompressedTexture2D_6urjk")
+offset = Vector2(4.295, -100)
+hframes = 6
+
+[node name="HitFlashComponent" parent="Phase4" unique_id=1275069082 node_paths=PackedStringArray("sprite", "healthComponent") instance=ExtResource("3_lo54i")]
+sprite = NodePath("../Sprite2D")
+healthComponent = NodePath("../../HealthComponent")
+flash_color = Color(1, 0.90588236, 0.8980392, 1)
+
+[node name="HitBoxComponent2" parent="Phase4" unique_id=1708919263 node_paths=PackedStringArray("health_component") instance=ExtResource("5_lo54i")]
+collision_layer = 8
+collision_mask = 0
+health_component = NodePath("../../HealthComponent")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Phase4/HitBoxComponent2" unique_id=23674342]
+position = Vector2(0, -32)
+shape = SubResource("CapsuleShape2D_awrjv")
+
+[node name="AttackComponent" parent="Phase4" unique_id=996256182 instance=ExtResource("2_s4ilw")]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Phase4/AttackComponent" unique_id=2053714907]
+position = Vector2(-0.012748597, -28.299507)
+polygon = PackedVector2Array(0.012748597, -37.700493, -23.987251, 0.29950714, -21.987251, 16.299507, -0.9872514, 28.299507, 22.012749, 18.299507, 24.012749, 0.29950714)
 
 [node name="AttackCooldown" type="Timer" parent="." unique_id=1195007977]
 unique_name_in_owner = true
@@ -644,7 +667,7 @@ libraries/Phase2 = SubResource("AnimationLibrary_deinn")
 libraries/Phase3 = SubResource("AnimationLibrary_yfa2x")
 
 [node name="HPBar" parent="." unique_id=140443038 node_paths=PackedStringArray("healthComponent") instance=ExtResource("2_2euwj")]
-anchors_preset = -1
+z_index = 4
 offset_left = -14.0
 offset_top = 6.9999995
 offset_right = 86.0
@@ -652,10 +675,9 @@ offset_bottom = 22.0
 scale = Vector2(0.29117122, 0.29117122)
 healthComponent = NodePath("../HealthComponent")
 
-[node name="HealthComponent" parent="." unique_id=1087537920 node_paths=PackedStringArray("hp_bar") instance=ExtResource("4_oj5hy")]
+[node name="HealthComponent" parent="." unique_id=1087537920 instance=ExtResource("4_oj5hy")]
 unique_name_in_owner = true
 MAX_HEALTH = 500.0
-hp_bar = NodePath("../HPBar")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=224046374]
 visible = false
